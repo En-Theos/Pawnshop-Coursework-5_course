@@ -1,6 +1,86 @@
-// Подключение ===============================================================================================
+// Підключення ===============================================================================================
+// PFDinTextCondPro
+@font-face {
+	font-family: 'PFDinTextCondPro';
+	src: url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-medium.eot');
+	src: local('☺'), url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-medium.woff') format('woff'), 
+		url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-medium.ttf') format('truetype'), 
+		url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-medium.svg') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
 
+// PFDinTextCondPro
+@font-face {
+	font-family: 'PFDinTextCondPro';
+	src: url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-medium.eot');
+	src: local('☺'), url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-medium.woff') format('woff'), 
+		url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-medium.ttf') format('truetype'), 
+		url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-medium.svg') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'PFDinTextCondPro';
+	src: url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-regular.eot');
+	src: local('☺'), url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-regular.woff') format('woff'),
+	 	url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-regular.ttf') format('truetype'), 
+	 	url('../../public/fonts/PFDinTextCondPro/pfdintextcondpro-regular.svg') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+// IdealistSans
+@font-face {
+	font-family: 'IdealistSans';
+	src: url('../../public/fonts/IdealistSans/Idealist Sans Regular.eot');
+	src: local('☺'), url('../../public/fonts/IdealistSans/Idealist Sans Regular.woff') format('woff'), 
+		url('../../public/fonts/IdealistSans/Idealist Sans Regular.ttf') format('truetype'), 
+		url('../../public/fonts/IdealistSans/Idealist Sans Regular.svg') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+ 
+// HarbellPersonalUseOnly
+@font-face {
+	font-family: 'HarbellPersonalUseOnly';
+	src: url('../../public/fonts/HarbellPersonalUseOnly/Harbell_Personal_Use.eot');
+	src: local('☺'), url('../../public/fonts/HarbellPersonalUseOnly/Harbell_Personal_Use.woff') format('woff'), 
+		url('../../public/fonts/HarbellPersonalUseOnly/Harbell_Personal_Use.ttf') format('truetype'), 
+		url('../../public/fonts/HarbellPersonalUseOnly/Harbell_Personal_Use.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// CeremoniousOne
+@font-face {
+	font-family: 'CeremoniousOne';
+	src: url('../../public/fonts/CeremoniousOne/ceremonious_one.eot');
+	src: local('☺'), url('../../public/fonts/CeremoniousOne/ceremonious_one.woff') format('woff'), 
+		url('../../public/fonts/CeremoniousOne/ceremonious_one.ttf') format('truetype'), 
+		url('../../public/fonts/CeremoniousOne/ceremonious_one.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// BravoRG
+@font-face {
+	font-family: 'BravoRG';
+	src: url('../../public/fonts/BravoRG/BravoRG Regular.eot');
+	src: local('☺'), url('../../public/fonts/BravoRG/BravoRG Regular.woff') format('woff'), 
+		url('../../public/fonts/BravoRG/BravoRG Regular.ttf') format('truetype'), 
+		url('../../public/fonts/BravoRG/BravoRG Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 //============================================================================================================
-// Переменные ================================================================================================
 
+// Змінні ====================================================================================================
+$PTSans: 'PT Sans', sans-serif;
+$PTSansNarrow: 'PT Sans Narrow', sans-serif;
+$PFDinTextCondPro: 'PFDinTextCondPro';
+$IdealistSans: 'IdealistSans';
+$HarbellPersonalUseOnly: 'HarbellPersonalUseOnly';
+$BravoRG: 'BravoRG';
+$CeremoniousOne: 'CeremoniousOne';
 //============================================================================================================
