@@ -1,0 +1,84 @@
+@import '../../styles/fonts';
+
+.slider {
+    background-image: url("../../../public/image/webp/fonHeader.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    .limit {
+        max-width: 950px;
+        margin: 0 auto;
+        padding: 34px 10px 0px;
+        text-align: center;
+        .sliderWindow {
+            margin:0 auto 80px;
+            .slide {
+                h5 {
+                    color: #bb9c66;
+                    font-family: $CeremoniousOne;
+                    font-size: 40px;
+                    margin-bottom: 23px;
+                }
+                h2 {
+                    color: #ffffff;
+                    font-family: $PFDinTextCondPro;
+                    font-size: 35px;
+                    font-weight: 400;
+                    text-transform: uppercase;
+                    letter-spacing: 5.25px;
+                    margin-bottom: 27px;
+                }
+                p {
+                    max-width: 688px;
+                    color: #ffffff;
+                    font-family: $PTSans;
+                    font-size: 15px;
+                    font-weight: 400;
+                    line-height: 25px;
+                    margin: 0 auto 58px;
+                }
+                button {
+                    width: 250px;
+                    height: 50px;
+                    border: 3px solid #bb9c66;
+                    border-image: linear-gradient(to top, #8d652e 0%,  #c3a775 100%);
+                    border-image-slice: 1;
+                    background-color: unset;
+                    span {
+                        color: #ffffff;
+                        font-family: $IdealistSans;
+                        font-size: 15px;
+                        font-weight: 400;
+                        text-transform: uppercase;
+                        letter-spacing: 1.5px;
+                    }
+                }
+            }
+        }
+        .controlSlider {
+            position: relative;
+            margin: 0 auto;
+            transform: translateY(50%);
+            .prevBtn, .nextBtn {
+                margin: 0  15px;
+                cursor: pointer;
+            }
+            
+            &::before {
+                z-index: -1;
+                content: '';
+                position: absolute;
+                display: block;
+                margin: auto;
+                height: 0;
+                width: 0;
+                left: 0;
+                right: 0;
+                top: -27px;
+                border-left: 45px solid transparent;
+                border-right: 45px solid transparent;
+                border-bottom: 45px solid white;
+            }
+        }
+    }
+}

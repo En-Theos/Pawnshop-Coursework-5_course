@@ -1,0 +1,191 @@
+@import '../../styles/fonts';
+
+header {
+    background-color: #1c242a; 
+    .limit {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 950px;
+        margin: 0 auto;
+        padding: 25px 10px 25px;
+        .burger {
+            display: none;
+            position: relative;
+            @media ( max-width: 870px) {
+                display: block;
+            }
+            .btn {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 27px;
+                .line {
+                    width: 30px;
+                    height: 2px;
+                    background-color: #bb9c66;
+                    transition: .3s;
+                }
+            }
+            .link {
+                display: none;
+                position: absolute;
+                background-color: #1c242a;
+                padding: 8px 25px 20px;
+                transition: .3s;
+                top: 59px;
+                div {   
+                    margin: 10px 0;
+                    a {
+                        color: #ffffff;
+                        font-family: $PFDinTextCondPro;
+                        font-size: 14px;
+                        font-weight: 400;
+                        text-transform: uppercase;
+                        letter-spacing: 1.4px;
+                        transition: color .3s linear;
+                        &:hover {
+                            color: #bb9c66;
+                        }
+                    }
+                }
+            }
+        }
+        .active {
+            .btn {
+                .line:nth-child(1){
+                    transform: rotateZ(-45deg) translateX(-10px) translateY(10px);
+                }
+                .line:nth-child(2){
+                    transform: rotateZ(45deg);
+                }
+                .line:nth-child(3){
+                    transform: rotateZ(-45deg) translateX(10px) translateY(-8px);
+                }
+            }
+            .link {
+                display: block;
+               
+            }
+        }
+        .logo {
+            img {
+                transform: translateY(-8px);
+            }
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            flex-grow: 1;
+            max-width: 450px;
+            @media ( max-width: 870px) {
+                display: none;
+            }
+            div {
+                a {
+                    color: #ffffff;
+                    font-family: $PFDinTextCondPro;
+                    font-size: 14px;
+                    font-weight: 400;
+                    text-transform: uppercase;
+                    letter-spacing: 1.4px;
+                    transition: color .3s linear;
+                    &:hover {
+                        color: #bb9c66;
+                    }
+                }
+            }
+        }
+        .actions {
+            display: flex;
+            .region {
+                margin-right: 25px;
+                display: flex;
+                align-items: center;
+                img {
+                    transform: translateY(-2px);
+                    margin-right: 10px;
+                }
+                a {
+                    color: #ffffff;
+                    font-family: $PFDinTextCondPro;
+                    font-size: 14px;
+                    font-weight: 400;
+                    text-transform: uppercase;
+                    letter-spacing: 1.4px;
+                    transition: color .3s linear;
+                    &:hover {
+                        color: #bb9c66;
+                    }
+                }
+            }
+            .userMenu {
+                position: relative;
+                &:hover {
+                    .subMenu {
+                        height: 147px;
+                        padding: 7px 25px 15px 15px;
+                    }
+                }
+                .userIco {
+                    position: relative;
+                    cursor: pointer;
+                    z-index: 10;
+                }
+                .subMenu {
+                    display: block;
+                    overflow: hidden;
+                    min-width: 210px;
+                    height: 0;
+                    position: absolute;
+                    top: -10px;
+                    left: -18px;
+                    background-color: #1c242a;
+                    padding: 0 25px 0 15px;
+                    transition: all .3s ease-in-out;
+                    z-index: 5;
+                    .account {
+                        color: #ffffff;
+                        font-family: $PTSans;
+                        font-size: 16px;
+                        line-height: 25px;
+                        font-weight: 400;
+                        margin-bottom: 10px;
+                        text-align: center;
+                    }
+                    >div {
+                        display: flex;
+                        align-items:center;
+                        margin-bottom: 5px;
+                        div {
+                            width: 24px;
+                            text-align: center;
+                            margin-right: 13px;
+                            img {
+
+                            }
+                        }
+                        a {
+                            color: #ffffff;
+                            font-family: $PTSans;
+                            font-size: 16px;
+                            line-height: 25px;
+                            font-weight: 400;
+                            transition: color .3s linear;
+                            &:hover {
+                                color: #bb9c66;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            .active {
+                .subMenu {
+                    display: block;
+                }
+                
+            }
+        }
+    }
+}
