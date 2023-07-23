@@ -1,11 +1,9 @@
-import Header from "./components/header";
-import Slider from "./components/slider";
+import {MainPage} from "./pages"
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Slider/>
+      <MainPage/>
     </div>
   );
 }

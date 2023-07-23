@@ -1,0 +1,67 @@
+@import "../../styles/fonts";
+
+.title {
+    margin-bottom: 45px;
+    
+    .limit{
+        text-align: center;
+        max-width: 970px;
+        margin: 0 auto;
+        padding: 0 10px;
+        h3 {
+            color: #bb9c66;
+            font-family: $CeremoniousOne;
+            font-size: 40px;
+            font-weight: 400;
+            margin-bottom: 27px;
+        }
+      
+        .decor {
+            display: flex;
+            .elemDecor {
+                max-width: 400px;
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                .bigRomb {
+                    width: 25px * 0.7;
+                    height: 25px * 0.7;
+                    border: 1px solid #bb9c66;
+                    transform: rotateZ(45deg);
+                    margin: 0 8px;
+                }
+                .smallRomb {
+                    width: 15px * 0.7;
+                    height: 15px * 0.7;
+                    border: 1px solid #bb9c66;
+                    transform: rotateZ(45deg);
+                    margin: 0 6px;
+                }
+                .circle {
+                    width: 9px;
+                    height: 9px;
+                    border: 1px solid #bb9c66;
+                    border-radius: 50%;
+                    margin: 0 7px;
+                }
+                .line {
+                    max-width: 315px;
+                    flex-grow: 1;
+                    height: 2px;
+                    background-color: #bb9c66;
+                }
+            }
+            .ico {
+                margin: 0 30px;
+                h2 {
+                    color: #1c242a;
+                    font-family: $PFDinTextCondPro;
+                    font-size: 35px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    letter-spacing: 5.25px;
+                }
+            }
+        }
+    }
+}

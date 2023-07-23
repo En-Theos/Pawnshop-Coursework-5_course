@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.scss"
 
-export default function SliderComponent() {
+export default function GreetingSlider() {
 
     const sliderRef = useRef<Slider>(null);
 
@@ -19,7 +19,7 @@ export default function SliderComponent() {
       };
 
     return (
-        <article className="slider">
+        <article className="greetingSlider">
             <div className="limit">
                     <Slider ref={sliderRef} {...settings} >
                         <div className="slide">
@@ -49,14 +49,10 @@ export default function SliderComponent() {
                     </Slider>
                 <div className="controlSlider">
                     <img src="image/ico/header/arrow_left.svg" alt="" className="prevBtn" onClick={() => {
-                        if (sliderRef.current) {
-                            sliderRef.current.slickPrev();
-                        }
+                        sliderRef.current?.slickPrev();
                     }}/>
                     <img src="image/ico/header/arrow_right.svg" alt="" className="nextBtn" onClick={() => {
-                        if (sliderRef.current) {
-                            sliderRef.current.slickNext();
-                        }
+                            sliderRef.current?.slickNext();
                     }}/>
                 </div>
             </div>

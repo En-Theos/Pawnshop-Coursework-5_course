@@ -1,0 +1,210 @@
+@import "../../styles/fonts";
+
+.categories {
+    margin-bottom: 85px;
+    .limit {
+        display: grid;
+        grid-template-columns: 250px 25px 250px;
+        grid-template-rows: repeat(2, 250px);
+        grid-auto-rows: 250px;
+        justify-content: center;
+        row-gap: 50px;
+        column-gap: 35px;
+        max-width: 970px;
+        margin: 0 auto;
+        padding: 20px 10px 0;
+        @media (max-width: 620px) {
+            grid-template-columns: 250px 250px;
+        }
+        @media (max-width: 550px) {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 20px;
+            column-gap: 15px;
+        }
+        .categoria {
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border-radius: 50%;
+            transition: all .3s linear;
+            @media (max-width: 550px) {
+                width: 70px;
+                height: 70px;
+                overflow: hidden;
+            }
+            a {
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 50%;
+                background-color:#00000098;
+                padding-top: 25px;
+                padding-bottom: 40px;
+                @media (max-width: 550px) {
+                    padding-top: 0;
+                }
+                .categoriaIco {
+                    max-width: 75px;
+                    margin-bottom: 25px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .categoriaName { 
+                    flex-grow: 1;
+                    text-align: center;
+                    max-width: 185px;
+                    color: #ffffff;
+                    font-family: $PFDinTextCondPro;
+                    font-size: 21px;
+                    font-weight: 500;
+                    line-height: 25px;
+                    text-transform: uppercase;
+                    letter-spacing: 2.1px;
+                }
+                .categoriaDecor {
+                    display: flex;
+                    align-items: center;
+                    .line {
+                        width: 25px;
+                        height: 1px;
+                        background-color: #bb9c66;
+                    }
+                    .romb {
+                        margin: 0 16px;
+                        width: 22px * 0.7;
+                        height: 22px * 0.7;
+                        transform: rotateZ(45deg);
+                        border: 1px solid #bb9c66;
+                    }
+                }
+            }
+            &:nth-child(1) {
+                position: relative;
+                background-image: url("../../../public/image/webp/categories/clock.webp");
+                @media (max-width: 980px) {
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: -30px;
+                        margin: 0 auto;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background-color: #bb9c66;
+                    }
+                }
+               
+            }
+            &:nth-child(3) {
+                position: relative;
+                background-image: url("../../../public/image/webp/categories/jewelryProducts.webp");
+                @media (max-width: 550px) {
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        bottom: -30px;
+                        margin: 0 auto;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background-color: #bb9c66;
+                    }
+                }
+            }
+            &:nth-child(4) {
+                position: relative;
+                background-image: url("../../../public/image/webp/categories/Hi-Tech.webp");
+             
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: -30px;
+                    margin: 0 auto;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: #bb9c66;
+                }
+            }
+            &:nth-child(6) {
+                @media (max-width: 980px) {
+                    grid-column-start: 3;
+                }
+                @media (max-width: 620px) {
+                    grid-column-start: auto;
+                }
+                position: relative;
+                background-image: url("../../../public/image/webp/categories/ItemsArts.webp");
+
+              
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: -30px;
+                    margin: 0 auto;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: #bb9c66;
+                }
+            }
+        }
+        
+        .decor {
+            @media (max-width: 620px) {
+                display: none;
+            }
+            .line {
+                position: relative;
+                width: 1px;
+                height: 100px;
+                background-color: #bb9c66;
+                margin: 0 auto;
+                &:first-child {
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: -33px;
+                        left: -7px;
+                        width: 22px * 0.7;
+                        height: 22px * 0.7;
+                        transform: rotateZ(45deg);
+                        border: 1px solid #bb9c66;
+                    }
+                }
+                &:last-child {
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        bottom: -33px;
+                        left: -7px;
+                        width: 22px * 0.7;
+                        height: 22px * 0.7;
+                        transform: rotateZ(45deg);
+                        border: 1px solid #bb9c66;
+                    }
+                }
+            }
+            .circle {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: #bb9c66;
+                margin: 20px auto;
+            }
+        }
+    }
+
+}
