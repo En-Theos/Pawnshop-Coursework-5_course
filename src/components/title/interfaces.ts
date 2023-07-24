@@ -1,4 +1,10 @@
 export default interface ITitleProps {
-    minorTitle: string
-    mainTitle: string
+    minorTitle: {
+        text: string,
+        color?: string
+    }
+    mainTitle: {
+        text: string,
+        color?: string
+    }
 }

@@ -1,0 +1,79 @@
+@import "../../styles/fonts";
+
+.cardsService {
+    .limit {
+        display: flex;
+        justify-content: space-between;
+        max-width: 970px;
+        margin: 0 auto;
+        padding: 0 10px;
+        .cardService {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 260px;
+            text-align: center;
+            margin: 0 10px;
+            .img {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 160px;
+                margin-bottom: 45px;
+            }
+            .title {
+                color: #ffffff;
+                font-family: $PFDinTextCondPro;
+                font-size: 21px;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 2.1px;
+                margin-bottom: 30px;
+            }
+            .description {
+                flex-grow: 1;
+                color: #bb9c66;
+                font-family: $PTSans;
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 25px;
+                margin-bottom: 35px;
+            }   
+            button {
+                cursor: default;
+                position: relative;
+                background-color: unset;
+                a {
+                    color: #ffffff;
+                    font-family: $PFDinTextCondPro;
+                    font-size: 21px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    letter-spacing: 2.12px;
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: -70px;
+                    margin: auto 0;
+                    width: 50px;
+                    height: 1px;
+                    background-color: #bb9c66;
+                }
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: -70px;
+                    margin: auto 0;
+                    width: 50px;
+                    height: 1px;
+                    background-color: #bb9c66;
+                }
+            }
+        }
+    }
+}
