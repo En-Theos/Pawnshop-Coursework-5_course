@@ -16,6 +16,7 @@ export default function Header() {
                         <div><a href="#">Аукціон</a></div>
                         <div><a href="#">Товари</a></div>
                         <div><a href="#">Компанія</a></div>
+                        <div><a href="#">Новини</a></div>
                     </div>
                 </div>
                 <div className="logo">
@@ -27,6 +28,7 @@ export default function Header() {
                     <div><a href="#">Аукціон</a></div>
                     <div><a href="#">Товари</a></div>
                     <div><a href="#">Компанія</a></div>
+                    <div><a href="#">Новини</a></div>
                 </nav>
                 <div className="actions">
                     <div className="region">

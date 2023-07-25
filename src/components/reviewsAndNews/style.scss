@@ -1,0 +1,59 @@
+@import "../../styles/fonts";
+
+.reviewsAndNews {
+    .limit {
+        max-width: 970px;
+        margin: 0 auto;
+        padding: 0 10px;
+        .title {
+            display: flex;
+            align-items: center;
+            color: #000000;
+            font-family: $PFDinTextCondPro;
+            font-size: 35px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3.5px;
+            margin-bottom: 35px;
+            img {
+                margin-right: 15px;
+                height: 25px;
+            }
+        }
+        .flexBox {
+            display: flex;
+            justify-content: space-between;
+            .news,.reviews {
+                max-width: 450px;
+                flex-grow: 1;
+                margin: 0 10px;
+                .new, .review {
+                    margin-bottom: 40px;
+                    max-width: 400px;
+                    time {
+                        display: block;
+                        color: #bb9c66;
+                        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                        font-size: 12px;
+                        font-weight: 400;
+                        margin-bottom: 14px;
+                    }
+                    .name {
+                        display: block;
+                        font-family: $PTSans;
+                        font-weight: 700;
+                        text-decoration: underline;
+                        margin-bottom: 6px;
+                        color:#000000;
+                    }
+                    .text {
+                        font-family: $PTSans;
+                        font-weight: 400;
+                        line-height: 23px;
+                    }
+                }
+            }
+            
+        }
+    }
+}

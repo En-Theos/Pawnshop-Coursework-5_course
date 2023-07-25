@@ -5,6 +5,9 @@ import Title from "../../components/title";
 import CategoriesGoods from "../../components/categoriesGoods";
 import BlockText from "../../components/blockText";
 import FreeServices from "../../components/freeServices";
+import Quote from "../../components/quote";
+import ReviewsAndNews from "../../components/reviewsAndNews";
+import Footer from "../../components/footer";
 
 import "./style.scss"
 
@@ -14,17 +17,23 @@ export default function MainPage() {
             <Header />
             <GreetingSlider />
             <main>
-                <div className="purchase">
-                    <Title minorTitle={{text: "Популярнi"}} mainTitle={{text: "Лоти під аукціон"}}/>
+                <section className="purchase">
+                    <Title minorTitle={{ text: "Популярнi" }} mainTitle={{ text: "Лоти під аукціон" }} />
                     <LotsSlider />
-                    <Title minorTitle={{text: "Усi нашi"}} mainTitle={{text: "Категорії товарів"}}/>
-                    <CategoriesGoods/>
+                    <Title minorTitle={{ text: "Усi нашi" }} mainTitle={{ text: "Категорії товарів" }} />
+                    <CategoriesGoods />
                     <BlockText />
-                </div>
-                <div className="services">
-                    <Title minorTitle={{text: "Безкоштовнi"}} mainTitle={{text: "Послуги", color: "#ffffff"}}/>
+                </section>
+                <section className="services">
+                    <Title minorTitle={{ text: "Безкоштовнi" }} mainTitle={{ text: "Послуги", color: "#ffffff" }} />
                     <FreeServices />
-                </div>
+                </section>
+                <aside className="secondaryInfo">
+                    <Title minorTitle={{ text: "Цiкавi" }} mainTitle={{ text: "Цитати" }} />
+                    <Quote />
+                    <ReviewsAndNews />
+                </aside>
+                <Footer />
             </main>
         </>
     )

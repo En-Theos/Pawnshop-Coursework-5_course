@@ -1,0 +1,73 @@
+@import "../../styles/fonts";
+
+footer {
+    background-color: #1c242a;
+    .limit {
+        max-width: 970px;
+        margin: 0 auto;
+        padding: 60px 10px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .logo {
+            img {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            p {
+                color: #bb9c66;
+                font-family: $PTSans;
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
+        .linkFooter {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 450px;
+            div {
+            margin-right: 15px;
+                a {
+                    color: #ffffff;
+                    font-family: $PFDinTextCondPro;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 25px;
+                    text-transform: uppercase;
+                    letter-spacing: 1.4px;
+                }
+            }
+        }
+        .phone {
+            p {
+                &:first-child {
+                    display: flex;
+                    align-items: flex-start;
+                    color: #bb9c66;
+                    font-family: $BravoRG;
+                    font-size: 50px;
+                    font-weight: 400;
+                    text-transform: uppercase;
+                    margin-bottom: 7px;
+                    span {
+                        font-size: 25px;
+                        margin-right: 5px;
+                    }
+                }
+                &:last-child {
+                    text-align: right;
+                    a {
+                        color: #bb9c66;
+                        font-family: $PTSans;
+                        font-size: 14px;
+                        font-weight: 400;
+                        border-bottom: 2px dashed #bb9c66;
+                    }
+                    img {
+                        margin-right: 5px;
+                    }
+                }   
+            }
+        }
+    }
+}
