@@ -2,7 +2,7 @@ import "./style.scss"
 
 export default function Quote() {
     return (
-        <div className="quote">
+        <article className="quote">
             <div className="limit">
                 <div className="quoteBox">
                     <div className="quotePortrait">
@@ -28,6 +28,6 @@ export default function Quote() {
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
     )
 }

@@ -16,7 +16,7 @@ export default function MainPage() {
         <>
             <Header />
             <GreetingSlider />
-            <main>
+            <main className="mainPage">
                 <section className="purchase">
                     <Title minorTitle={{ text: "Популярнi" }} mainTitle={{ text: "Лоти під аукціон" }} />
                     <LotsSlider />

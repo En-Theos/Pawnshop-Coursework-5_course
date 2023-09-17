@@ -1,7 +1,8 @@
 @import '../../styles/fonts';
 
 header {
-    background-color: #1c242a; 
+    background-color: #1c242a;
+
     .limit {
         display: flex;
         justify-content: space-between;
@@ -9,17 +10,21 @@ header {
         max-width: 950px;
         margin: 0 auto;
         padding: 25px 10px 25px;
+
         .burger {
             display: none;
             position: relative;
-            @media ( max-width: 870px) {
+
+            @media (max-width: 870px) {
                 display: block;
             }
+
             .btn {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 height: 27px;
+
                 .line {
                     width: 30px;
                     height: 2px;
@@ -27,6 +32,7 @@ header {
                     transition: .3s;
                 }
             }
+
             .link {
                 display: none;
                 position: absolute;
@@ -34,8 +40,10 @@ header {
                 padding: 8px 25px 20px;
                 transition: .3s;
                 top: 59px;
-                div {   
+
+                div {
                     margin: 10px 0;
+
                     a {
                         color: #ffffff;
                         font-family: $PFDinTextCondPro;
@@ -44,6 +52,7 @@ header {
                         text-transform: uppercase;
                         letter-spacing: 1.4px;
                         transition: color .3s linear;
+
                         &:hover {
                             color: #bb9c66;
                         }
@@ -51,38 +60,55 @@ header {
                 }
             }
         }
+
         .active {
             .btn {
-                .line:nth-child(1){
+                .line:nth-child(1) {
                     transform: rotateZ(-45deg) translateX(-10px) translateY(10px);
                 }
-                .line:nth-child(2){
+
+                .line:nth-child(2) {
                     transform: rotateZ(45deg);
                 }
-                .line:nth-child(3){
+
+                .line:nth-child(3) {
                     transform: rotateZ(-45deg) translateX(10px) translateY(-8px);
                 }
             }
+
             .link {
                 display: block;
-               
+
             }
         }
         .logo {
             img {
-                transform: translateY(-8px);
+                transform: translateY(-2px);
             }
         }
+
         nav {
             display: flex;
             justify-content: space-between;
             flex-grow: 1;
-            max-width: 450px;
-            @media ( max-width: 870px) {
+            max-width: 480px;
+
+            @media (max-width: 870px) {
                 display: none;
             }
-            div {
-                a {
+
+            >div {
+                position: relative;
+
+                &:nth-child(2):hover .perspectiv{
+                    opacity: 1;
+                    visibility: visible;
+                    .subMenu {
+                        transform: rotateX(0deg);
+                    }
+                }
+
+                >a {
                     color: #ffffff;
                     font-family: $PFDinTextCondPro;
                     font-size: 14px;
@@ -90,22 +116,80 @@ header {
                     text-transform: uppercase;
                     letter-spacing: 1.4px;
                     transition: color .3s linear;
+                    padding: 10px;
+                    cursor: pointer;
+
                     &:hover {
                         color: #bb9c66;
+                    }
+                }
+
+                img {
+                    position: absolute;
+                    margin: 0 auto;
+                    left: 0;
+                    right: 0;
+                    top: 18px;
+                    transform: rotate(-90deg);
+                    height: 15px;
+                    z-index: 100;
+                }
+
+                .perspectiv {
+                    display: block;
+                    min-width: 210px;
+                    position: absolute;
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateX(-50%);
+                    top: 15px;
+                    left: 50%;
+                    padding: 30px 0 0;
+                    z-index: 1;
+                    perspective: 400px;
+
+                    .subMenu {
+                        transform: rotateX(-20deg) rotateY(-5deg);
+                        transition: all .3s;
+                        background-color: #1c242a;
+
+                        div {
+                            text-align: center;
+                            margin-bottom: 10px;
+                            padding-bottom: 8px;
+                            border-bottom: solid 2px #2c28209f;
+    
+                            a {
+                                color: #ffffff;
+                                font-family: $PTSans;
+                                font-size: 16px;
+                                line-height: 25px;
+                                font-weight: 400;
+                                transition: color .3s linear;
+    
+                                &:hover {
+                                    color: #bb9c66;
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
+
         .actions {
             display: flex;
+
             .region {
                 margin-right: 25px;
                 display: flex;
                 align-items: center;
+
                 img {
                     transform: translateY(-2px);
                     margin-right: 10px;
                 }
+
                 a {
                     color: #ffffff;
                     font-family: $PFDinTextCondPro;
@@ -114,24 +198,29 @@ header {
                     text-transform: uppercase;
                     letter-spacing: 1.4px;
                     transition: color .3s linear;
+
                     &:hover {
                         color: #bb9c66;
                     }
                 }
             }
+
             .userMenu {
                 position: relative;
+
                 &:hover {
                     .subMenu {
                         height: 147px;
                         padding: 7px 25px 15px 15px;
                     }
                 }
+
                 .userIco {
                     position: relative;
                     cursor: pointer;
                     z-index: 10;
                 }
+
                 .subMenu {
                     display: block;
                     overflow: hidden;
@@ -144,6 +233,7 @@ header {
                     padding: 0 25px 0 15px;
                     transition: all .3s ease-in-out;
                     z-index: 5;
+
                     .account {
                         color: #ffffff;
                         font-family: $PTSans;
@@ -153,18 +243,20 @@ header {
                         margin-bottom: 10px;
                         text-align: center;
                     }
+
                     >div {
                         display: flex;
-                        align-items:center;
+                        align-items: center;
                         margin-bottom: 5px;
+
                         div {
                             width: 24px;
                             text-align: center;
                             margin-right: 13px;
-                            img {
 
-                            }
+                            img {}
                         }
+
                         a {
                             color: #ffffff;
                             font-family: $PTSans;
@@ -172,19 +264,21 @@ header {
                             line-height: 25px;
                             font-weight: 400;
                             transition: color .3s linear;
+
                             &:hover {
                                 color: #bb9c66;
                             }
                         }
                     }
                 }
-                
+
             }
+
             .active {
                 .subMenu {
                     display: block;
                 }
-                
+
             }
         }
     }

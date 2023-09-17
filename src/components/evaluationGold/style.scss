@@ -1,0 +1,15 @@
+.goldCalc {
+    .limit {
+        margin: 0 auto;
+        max-width: 950px;
+        padding: 0 10px;
+        .form {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            border: 3px solid #bb9c66;
+            border-image: linear-gradient(to top, #8d652e 0%, #c3a775 100%);
+            border-image-slice: 1;
+        }
+    }
+}

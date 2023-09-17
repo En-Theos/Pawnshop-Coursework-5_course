@@ -24,7 +24,29 @@ export default function Header() {
                 </div>
                 <nav>
                     <div><a href="#">Головна</a></div>
-                    <div><a href="#">Оцінка предметів</a></div>
+                    <div>
+                        <a href="#">Оцінка</a>
+                        <img src="image/ico/header/arrow_left.svg" alt="Ups..." />
+                        <div className="perspectiv">
+                            <div className="subMenu">
+                                <div>
+                                    <a href="">Золота</a>
+                                </div>
+                                <div>
+                                    <a href="">Срібла</a>
+                                </div>
+                                <div>
+                                    <a href="">Техніки</a>
+                                </div>
+                                <div>
+                                    <a href="">Наручних годинників</a>
+                                </div>
+                                <div>
+                                    <a href="">Предметів мистецтва</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div><a href="#">Аукціон</a></div>
                     <div><a href="#">Товари</a></div>
                     <div><a href="#">Компанія</a></div>

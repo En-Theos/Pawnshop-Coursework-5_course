@@ -2,7 +2,7 @@ import "./style.scss";
 
 export default function CategoriesGoods() {
     return (
-        <div className="categories">
+        <article className="categories">
             <div className="limit">
                 <div className="categoria">
                     <a href="">
@@ -68,6 +68,6 @@ export default function CategoriesGoods() {
                     </a>
                 </div>
             </div>
-        </div>
+        </article>
     )
 }

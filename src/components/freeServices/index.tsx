@@ -2,7 +2,7 @@ import "./style.scss"
 
 export default function FreeServices() {
     return (
-        <div className="cardsService">
+        <article className="cardsService">
             <div className="limit">
                 <div className="cardService">
                     <div className="img">
@@ -35,6 +35,6 @@ export default function FreeServices() {
                     <button><a href="#">Детальніше</a></button>
                 </div>
             </div>
-        </div>
+        </article>
     )
 }

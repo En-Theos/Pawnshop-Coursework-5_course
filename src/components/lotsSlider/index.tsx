@@ -20,7 +20,7 @@ export default function LotsSlider() {
       };
 
     return (
-        <div className="products">
+        <article className="products">
             <div className="limit">
                 <Slider ref={sliderRef} {...settings}>
                     <div className="slide">
@@ -307,6 +307,6 @@ export default function LotsSlider() {
                     }}/>
                 </div>
             </div>
-        </div>
+        </article>
     )
 }
