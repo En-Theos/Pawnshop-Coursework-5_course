@@ -1,20 +1,18 @@
 const mysql = require('mysql2');
 
-// Налаштування підключення до бази даних
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'pawnshop'
+// Налаштування пула з'єднань до бази даних
+const pool = mysql.createPool({
+  connectionLimit: 10, // Максимальна кількість з'єднань у пулі
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'pawnshop'
 });
 
-// Підключення до бази даних
-connection.connect((err) => {
-    if (err) {
-        console.error('Помилка підключення до бази даних:', err);
-    } else {
-        console.log('Підключено до бази даних MySQL');
-    }
-});
+// Замість connection.connect() ми використовуємо pool.promise() для отримання з'єднання
+// Ми використовуємо async/await для асинхронного виконання запитів
+const getConnection = async () => {
+  return pool.promise();
+};
 
-module.exports = connection;
+module.exports = getConnection;

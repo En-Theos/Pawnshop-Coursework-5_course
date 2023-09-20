@@ -1,33 +1,38 @@
 const express = require('express');
 const app = express();
 const port = 3001;
-const db = require('./database'); // Імпортуємо модуль для підключення до бази даних
+const getConnection = require('./database'); // Імпортуємо функцію для отримання з'єднання
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Конкретний домен
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', true);
-    next();
-  });
+  res.header('Access-Control-Allow-Origin', '*'); // Конкретний домен
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
 
-app.get('/metal_prices', (req, res) => {
-  // Виконуємо запит до бази даних
-  db.query('SELECT * FROM metal_prices', (err, results) => {
-    if (err) {
-      console.error('Помилка запиту до бази даних:', err);
-      res.status(500).send('Помилка сервера');
-      return;
-    }
-    res.json(results);
-  });
+app.get('/metal_prices', async (req, res) => {
+  try {
+    const connection = await getConnection();
+    const [rows, fields] = await connection.execute('SELECT * FROM metal_prices');
+    res.json(rows);
+  } catch (error) {
+    console.error('Помилка запиту до бази даних:', error);
+    res.status(500).send('Помилка сервера');
+  }
+});
+
+app.get('/state', async (req, res) => {
+  try {
+    const connection = await getConnection();
+    const [rows, fields] = await connection.execute('SELECT * FROM state');
+    res.json(rows);
+  } catch (error) {
+    console.error('Помилка запиту до бази даних:', error);
+    res.status(500).send('Помилка сервера');
+  }
 });
 
 app.listen(port, () => {
   console.log(`Сервер запущено на порту ${port}`);
 });
-
-
-
-
-
