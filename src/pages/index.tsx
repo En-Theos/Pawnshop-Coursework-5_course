@@ -1,4 +1,4 @@
 import MainPage from "./mainPage";
-import EvaluationPage from "./evaluationPage";
+import GoldPage from "./goldPage";
 
-export {MainPage, EvaluationPage};
+export {MainPage, GoldPage};

@@ -1,0 +1,39 @@
+@import "../../styles/fonts";
+
+.callBlock {
+    margin-bottom: 80px;
+    .limit {
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 70px 10px 0;
+        .content {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            img {
+                width: 50px;
+                margin-bottom: 20px;
+            }
+            .time {
+                font-family: $BravoRG;
+                font-size: 50px;
+                font-weight: 400;
+                color: #bb9c66;
+                margin-bottom: 30px;
+            }
+            p {
+                font-family: $PFDinTextCondPro;
+                font-size: 20px;
+                font-weight: 400;
+                color: #898887;
+                margin-bottom: 20px;
+            }
+            .phone {
+                font-family: $BravoRG;
+                font-size: 50px;
+                font-weight: 400;
+                color: #bb9c66;
+            }
+        }
+    }
+}

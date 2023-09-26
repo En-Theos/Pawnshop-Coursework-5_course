@@ -1,9 +1,8 @@
 import { useFormik } from 'formik';
-import * as Yup from "yup";
 import { useState, useEffect, useRef, RefObject } from 'react';
 
-import IDataGold from "./interfaces";
-import { ICondition } from "../../globalInterfaces";
+import DataOperator from '../../staticData/dataOperator';
+import { ICondition , IDataGold } from "../../staticData/interfaces";
 
 import "./style.scss"
 
@@ -51,21 +50,13 @@ export default function EvaluationGold() {
             }
         });
 
-        fetch("http://localhost:3001/metal_prices")
-            .then(response => response.json())
-            .then((data: IDataGold[]) => {
-                console.log(data);
-                setMetalPrices(data.filter(item => item.type.includes("Золото")));
-            })
-            .catch(error => console.error('Помилка:', error));
+        DataOperator.getMetal()?.then((data) => {
+            setMetalPrices(data);
+        });
 
-        fetch("http://localhost:3001/state")
-            .then(response => response.json())
-            .then((data: ICondition[]) => {
-                console.log(data);
-                setCondition(data);
-            })
-            .catch(error => console.error('Помилка:', error));
+        DataOperator.getCondition()?.then((data) => {
+            setCondition(data);
+        });
     }, []);
 
     function onSubmit(data:any) {
