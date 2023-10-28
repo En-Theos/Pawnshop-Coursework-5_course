@@ -15,6 +15,34 @@ app.get('/metal_prices', async (req, res) => {
   reqBody(res, 'SELECT * FROM metal_prices')
 });
 
+app.get('/laptop_prices', async (req, res) => {
+  reqBody(res, 'SELECT * FROM laptop_prices')
+});
+
+app.get('/monitor_prices', async (req, res) => {
+  reqBody(res, 'SELECT * FROM monitor_prices')
+});
+
+app.get('/phone_prices', async (req, res) => {
+  reqBody(res, 'SELECT * FROM phone_prices')
+});
+
+app.get('/photo_camera_prices', async (req, res) => {
+  reqBody(res, 'SELECT * FROM photo_camera_prices')
+});
+
+app.get('/tablets_prices', async (req, res) => {
+  reqBody(res, 'SELECT * FROM tablets_prices')
+});
+
+app.get('/tv_prices', async (req, res) => {
+  reqBody(res, 'SELECT * FROM tv_prices')
+});
+
+app.get('/video_camera_prices', async (req, res) => {
+  reqBody(res, 'SELECT * FROM video_camera_prices')
+});
+
 app.get('/state', async (req, res) => {
   reqBody(res, 'SELECT * FROM state')
 });
