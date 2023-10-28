@@ -1,6 +1,6 @@
 @import "../../styles/fonts";
 
-.goldCalc {
+.calc {
     margin-bottom: 100px;
 
     .limit {
@@ -10,7 +10,7 @@
 
         .form {
             max-width: 520px;
-            height: 500px;
+            min-height: 500px;
             margin: 0 auto;
             border: 3px solid #bb9c66;
             border-image: linear-gradient(to top, #8d652e 0%, #c3a775 100%);
@@ -94,9 +94,12 @@
                 }
 
                 .weight {
+                    cursor: text;
+
                     img {
                         left: 92%;
                         width: 10px;
+                        cursor: pointer;
 
                         &.inc {
                             transform: rotateZ(90deg) translateX(-3px);
@@ -107,6 +110,15 @@
                             margin-top: 13px;
                         }
                     }
+                }
+
+                .description {
+                    color: #333333;
+                    font-family: $PTSans;
+                    font-size: 15px;
+                    font-weight: 400;
+                    line-height: 25px;
+                    padding: 10px 0 0;
                 }
             }
 

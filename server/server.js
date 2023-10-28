@@ -12,27 +12,24 @@ app.use((req, res, next) => {
 });
 
 app.get('/metal_prices', async (req, res) => {
-  try {
-    const connection = await getConnection();
-    const [rows, fields] = await connection.execute('SELECT * FROM metal_prices');
-    res.json(rows);
-  } catch (error) {
-    console.error('Помилка запиту до бази даних:', error);
-    res.status(500).send('Помилка сервера');
-  }
+  reqBody(res, 'SELECT * FROM metal_prices')
 });
 
 app.get('/state', async (req, res) => {
-  try {
-    const connection = await getConnection();
-    const [rows, fields] = await connection.execute('SELECT * FROM state');
-    res.json(rows);
-  } catch (error) {
-    console.error('Помилка запиту до бази даних:', error);
-    res.status(500).send('Помилка сервера');
-  }
+  reqBody(res, 'SELECT * FROM state')
 });
 
 app.listen(port, () => {
   console.log(`Сервер запущено на порту ${port}`);
 });
+
+async function reqBody(res, SQLreq) {
+  try {
+    const connection = await getConnection();
+    const [rows, fields] = await connection.execute(SQLreq);
+    res.json(rows);
+  } catch (error) {
+    console.error('Помилка запиту до бази даних:', error);
+    res.status(500).send('Помилка сервера');
+  }
+}

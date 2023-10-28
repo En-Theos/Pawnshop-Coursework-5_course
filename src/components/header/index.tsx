@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 import "./style.scss"
 
 export default function Header() {
@@ -20,20 +22,20 @@ export default function Header() {
                     </div>
                 </div>
                 <div className="logo">
-                    <img src="image/webp/logo.png" alt="Ups..."/>
+                    <img src="/image/webp/logo.png" alt="Ups..."/>
                 </div>
                 <nav>
-                    <div><a href="#">Головна</a></div>
+                    <div><Link to="/">Головна</Link></div>
                     <div>
-                        <a href="#">Оцінка</a>
-                        <img src="image/ico/header/arrow_left.svg" alt="Ups..." />
+                        <p>Оцінка</p>
+                        <img src="/image/ico/header/arrow_left.svg" alt="Ups..." />
                         <div className="perspectiv">
                             <div className="subMenu">
                                 <div>
-                                    <a href="">Золота</a>
+                                    <Link to="evaluation/gold">Золота</Link>
                                 </div>
                                 <div>
-                                    <a href="">Срібла</a>
+                                    <Link to="evaluation/silver">Срібла</Link>
                                 </div>
                                 <div>
                                     <a href="">Техніки</a>
@@ -54,28 +56,28 @@ export default function Header() {
                 </nav>
                 <div className="actions">
                     <div className="region">
-                        <img src="image/ico/header/globe.svg" alt="Ups..."/>
+                        <img src="/image/ico/header/globe.svg" alt="Ups..."/>
                         <a href="">Вибір мови</a>
                     </div>
                     <div className="userMenu">
-                        <img src="image/ico/header/userMenu.png" alt="Ups..." className="userIco"/>
+                        <img src="/image/ico/header/userMenu.png" alt="Ups..." className="userIco"/>
                         <div className="subMenu">
                             <p className="account">Акаунт</p>
                             <div>
                                 <div>
-                                    <img src="image/ico/header/subMenu/key.svg" alt=""/>
+                                    <img src="/image/ico/header/subMenu/key.svg" alt=""/>
                                 </div>
                                 <a href="">Особистий кабінет</a>
                             </div>
                             <div>
                                 <div>
-                                    <img src="image/ico/header/subMenu/palm.svg" alt=""/>
+                                    <img src="/image/ico/header/subMenu/palm.svg" alt=""/>
                                 </div>
                                 <a href="">Мої ставки</a>
                             </div>
                             <div>
                                 <div>
-                                    <img src="image/ico/header/subMenu/hammer.svg" alt=""/>
+                                    <img src="/image/ico/header/subMenu/hammer.svg" alt=""/>
                                 </div>
                                 <a href="">Мої лоти</a>
                             </div>

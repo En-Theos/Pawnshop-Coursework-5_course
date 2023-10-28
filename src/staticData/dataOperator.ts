@@ -1,22 +1,29 @@
-import { ICondition , IDataGold } from "./interfaces";
+import { ICondition , IDataMetal } from "./interfaces";
 
 export default class DataOperator {
-    private static presenceMetal?: IDataGold[];
+    private static presenceMetal?: IDataMetal[];
+    public static category: {
+        en: string;
+        ua: string;
+    }[] = [{ en: "rings", ua: "Каблучки" },
+    { en: "earrings", ua: "Сережки" },
+    { en: "pendants", ua: "Кулони" },
+    { en: "crosses", ua: "Крестики" },
+    { en: "chains", ua: "Ланцюжки" },
+    { en: "bracelets", ua: "Браслети" },
+    { en: "wedding ring", ua: "Обручка" }];
+
     private static presenceState?: ICondition[];
 
-    static async getMetal() {
-        if (!DataOperator.presenceMetal) {
-            await fetch("http://localhost:3001/metal_prices")
-            .then(response => response.json())
-            .then((data: IDataGold[]) => {
-                DataOperator.presenceMetal = data.filter(item => item.type.includes("Золото"));
-            })
-            .catch(error => console.error('Помилка:', error));
+    static async getMetal(metal: 'Золото' | 'Срібло') {
+        await fetch("http://localhost:3001/metal_prices")
+        .then(response => response.json())
+        .then((data: IDataMetal[]) => {
+            DataOperator.presenceMetal = data.filter(item => item.type.includes(metal));
+        })
+        .catch(error => console.error('Помилка:', error));
 
-            return DataOperator.presenceMetal;
-        } else {
-            return DataOperator.presenceMetal
-        }
+        return DataOperator.presenceMetal;
     }
 
     static async getCondition() {

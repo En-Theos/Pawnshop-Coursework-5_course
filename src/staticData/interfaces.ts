@@ -1,4 +1,4 @@
-export interface IDataGold {
+export interface IDataMetal {
     id: number,
     type: string,
     rating: number,

@@ -1,4 +1,3 @@
-import Header from "../../components/header";
 import GreetingSlider from "../../components/greetingSlider";
 import LotsSlider from "../../components/lotsSlider";
 import Title from "../../components/title";
@@ -7,14 +6,12 @@ import BlockText from "../../components/blockText";
 import FreeServices from "../../components/freeServices";
 import Quote from "../../components/quote";
 import ReviewsAndNews from "../../components/reviewsAndNews";
-import Footer from "../../components/footer";
 
 import "./style.scss"
 
 export default function MainPage() {
     return (
         <>
-            <Header />
             <GreetingSlider />
             <main className="mainPage">
                 <section className="purchase">
@@ -39,7 +36,6 @@ export default function MainPage() {
                     <Quote />
                     <ReviewsAndNews />
                 </aside>
-                <Footer />
             </main>
         </>
     )
