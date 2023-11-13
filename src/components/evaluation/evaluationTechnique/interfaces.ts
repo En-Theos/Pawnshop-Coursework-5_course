@@ -1,0 +1,16 @@
+export default interface IForm {
+    category: string,
+    condition: string,
+    model: string,
+    processor: string,
+    RAM: string,
+    SSD: string,
+    graphicCard: string,
+    resolution: string,
+    screen: string,
+    additionalFeature: string[],
+    producer: string,
+    HDD: string,
+    accessory: string,
+    protection: string,
+}

@@ -5,53 +5,11 @@ export interface IDataMetal {
     sample: number
 }
 
-export interface IDataLaptop {
+export interface IDataTechnique {
     id: number,
     type: string,
     price: number,
-    component_or_parameter: string
-}
-
-export interface IDataMonitop {
-    id: number,
-    type: string,
-    price: number,
-    name_model: string
-}
-
-export interface IDataPhone {
-    id: number,
-    type: string,
-    price: number,
-    name_model: string
-}
-
-export interface IDataPhotoCamera {
-    id: number,
-    type: string,
-    price: number,
-    name_model: string
-}
-
-export interface IDataTablet {
-    id: number,
-    type: string,
-    price: number,
-    name_model: string
-}
-
-export interface IDataTv {
-    id: number,
-    type: string,
-    price: number,
-    name_model: string
-}
-
-export interface IDataVideoCamera {
-    id: number,
-    type: string,
-    price: number,
-    name_model: string
+    name: string
 }
 
 export interface ICondition{

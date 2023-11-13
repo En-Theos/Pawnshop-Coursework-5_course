@@ -5,7 +5,7 @@ const pool = mysql.createPool({
   connectionLimit: 10, // Максимальна кількість з'єднань у пулі
   host: 'localhost',
   user: 'root',
-  password: 'root',
+  password: '',
   database: 'pawnshop'
 });
 

@@ -38,7 +38,7 @@ export default function Header() {
                                     <Link to="evaluation/silver">Срібла</Link>
                                 </div>
                                 <div>
-                                    <a href="">Техніки</a>
+                                    <Link to="evaluation/technique">Техніки</Link>
                                 </div>
                                 <div>
                                     <a href="">Наручних годинників</a>

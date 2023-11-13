@@ -1,27 +1,34 @@
 import { useFormik } from 'formik';
 import { useState, useEffect, useRef, RefObject } from 'react';
 
-import DataOperator from '../../staticData/dataOperator';
+import DataOperator from '../../../staticData/dataOperator';
 
-import IEvaluationProps, {InitialValuesMetal} from "./interfaces";
-import { ICondition, IDataMetal } from "../../staticData/interfaces";
+import IForm from './interfaces';
+import { ICondition, IDataMetal } from "../../../staticData/interfaces";
 
-import Sample from './inputs/Sample';
-import Category from './inputs/Category';
-import Condition from './inputs/Condition';
-import Weight from './inputs/Weigth';
+import Sample from '../inputs/Sample';
+import Category from '../inputs/Category';
+import Condition from '../inputs/Condition';
+import Weight from '../inputs/Weigth';
 
-import "./style.scss"
+import "../style.scss"
 
-export default function Evaluation({ initialValues, type }: IEvaluationProps) {
+export default function EvaluationGold({type}: {type: "gold" | "silver"}) {
     // Локальний стейт для статичних даних цін певної категорії товарів
-    const [mainData, setMainData] = useState<{}[]>();
+    const [mainData, setMainData] = useState<IDataMetal[]>();
     // Локальний стейт для статичних даних описів стану предмету
     const [condition, setCondition] = useState<ICondition[]>();
 
+    const [prices, setPrices] = useState<Record<string, number>>({});
+
     // Ініціалізація Formik 
-    const form = useFormik({
-        initialValues,
+    const form = useFormik<IForm>({
+        initialValues: {
+            sample: '',
+            category: '',
+            condition: '',
+            weight: 0
+        },
         onSubmit,
     });
 
@@ -29,14 +36,13 @@ export default function Evaluation({ initialValues, type }: IEvaluationProps) {
     const refSubMenus: RefObject<HTMLDivElement[]> = useRef([]);
     // Функція добавлення випадаючого списку в масив Ref
     function addRef(elem: HTMLDivElement) {
-        if (refSubMenus.current?.length !== 3) { // ==========================================================
-            refSubMenus.current?.push(elem);
-        }
+        refSubMenus.current?.push(elem);
     }
 
     // Ref елемент для запису результату розрахунків калькулятора
     const refResultDiv: RefObject<HTMLButtonElement> = useRef<HTMLButtonElement>(null);
 
+    // Ініціалізація даних
     useEffect(() => {
         // Подія для закриття всіх випадаючих меню (refSubMenus) по кліку в будь-яке місце сайту
         document.body.addEventListener('click', (event: MouseEvent) => {
@@ -44,7 +50,9 @@ export default function Evaluation({ initialValues, type }: IEvaluationProps) {
 
             if (!element.matches('.option, .option *')) {
                 refSubMenus.current?.forEach((item) => {
-                    item.classList.remove("active");
+                    if (item) {
+                        item.classList.remove("active");
+                    }
                 })
             }
         });
@@ -62,45 +70,39 @@ export default function Evaluation({ initialValues, type }: IEvaluationProps) {
                     setMainData(data);
                 });
                 break;
-        
-            default:
-                break;
         }
-        
         // Получення даних про "Стан" з бази даних
         DataOperator.getCondition()?.then((data) => {
             setCondition(data);
         });
     }, []);
 
+    useEffect(() => {
+        // Встановлення значень для інпутів
+        form.setFieldValue("sample", mainData?.[0].sample + " " + mainData?.[0].type);
+        form.setFieldValue("category", Object.keys(DataOperator.dictionaryMetal)[0]);
+        form.setFieldValue("condition", condition?.[0].state);
+        form.setFieldValue("weight", 1);
+
+        // Встановлення цін значеннь в інпутах
+        if (mainData?.[0] && condition?.[0]) {
+            setPrices({
+                sample: mainData[0].rating,
+                condition: condition[0].coefficient,
+                weight: 1,
+                category: 0
+            }) 
+        }
+    }, [mainData, condition])
+
     // Функція для події нажимання на кнопку розрахунку калькулятора
-    function onSubmit(data: any) {
+    function onSubmit() {
         if (mainData && condition && refResultDiv.current) {
-            let rating;     
-            let result;
-
-            // Получаєм коефіціент для враховування стану предмету
-            const coefficient = condition.filter(item => {
-                return data.condition.includes(item.state);
-            })[0].coefficient;
-
             // Різні операції розрахунку для різних типів предмету
-            switch (type) {
-                case "gold": case "silver":
-                    // Получення ціни за грам вибраної проби золота
-                    rating = (mainData as IDataMetal[]).filter(item => {
-                        return data.sample.includes(item.sample);
-                    })[0].rating;
-
-                    result = Math.floor(rating * data.weight * coefficient);
-                    break;
-            
-                default:
-                    break;
-            }
+            let result = Math.floor(prices.sample * prices.weight * prices.condition);
 
             // Виведення результату розрахунків на сторінку
-            refResultDiv.current.innerHTML = `<p class='resultText'>Оцінка Вашого виробу <span class='resultNumb'>${result}</span></p>`;
+            refResultDiv.current.innerHTML = `<p class='resultText'>Оцінка Вашого предмету <span class='resultNumb'>${result}</span></p>`;
         }
     }
 
@@ -113,7 +115,9 @@ export default function Evaluation({ initialValues, type }: IEvaluationProps) {
                 div.classList.remove("active");
             } else {
                 refSubMenus.current?.forEach((item) => {
-                    item.classList.remove("active");
+                    if (item) {
+                        item.classList.remove("active");
+                    }
                 })
 
                 div.classList.add("active");
@@ -124,17 +128,26 @@ export default function Evaluation({ initialValues, type }: IEvaluationProps) {
     }
 
     // Подія вибору елементу випадаючого списку
-    function onСhoice(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    function onChoice(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         // Получення input в який запишеться вибране значення
         const input = event.currentTarget.closest(".option")?.querySelector(".input") as HTMLInputElement;
 
+        const price =  event.currentTarget.dataset.price;
+        setPrices((state) => {
+            return {...state, [input.name]: parseFloat(price+'')}
+        })
+
         // Встановка значееня через formik
-        form.setFieldValue(input.name, event.currentTarget.getAttribute("data-value"));
+        form.setFieldValue(input.name, event.currentTarget.textContent);
     }
 
     // Подія зміни значення в полі чисел
     function onNumberEvent(i: number | string) {
         const prevValue = form.getFieldProps("weight").value;
+
+        setPrices((state) => {
+            return {...state, weight: prevValue + 1}
+        });
 
         if (typeof i === "string") {
             form.setFieldValue("weight", (parseInt(i) <= 0) || isNaN(parseInt(i)) ? prevValue : parseInt(i));
@@ -147,35 +160,14 @@ export default function Evaluation({ initialValues, type }: IEvaluationProps) {
         }
     }
 
-    // Змінна для запису інпутів калькулятора
-    let inputs: JSX.Element | null = null; 
-
-    // Код вибору компонентів для калькулятора в залежності від переданого типу калькулятора
-    switch (type) {
-        case "gold": case "silver":
-            const typeValue = form.values as InitialValuesMetal;
-            const typePrice = mainData as IDataMetal[];
-            const category = DataOperator.category;
-
-            inputs = (
-                <>
-                    <Sample onShowSelection={onShowSelection} values={typeValue} addRef={addRef} prices={typePrice} onСhoice={onСhoice}/>
-                    <Category onShowSelection={onShowSelection} values={typeValue} addRef={addRef} category={category} onСhoice={onСhoice}/>
-                    <Condition onShowSelection={onShowSelection} values={typeValue} addRef={addRef} condition={condition} onСhoice={onСhoice}/>
-                    <Weight values={typeValue} onNumberEvent={onNumberEvent}/>
-                </>
-            )
-            break;
-        
-        default:
-            break;
-    }
-
     return (
         <article className='calc'>
             <div className="limit">
-                <form className='form' onSubmit={form.handleSubmit}>
-                    {inputs}
+                <form autoComplete="off" className='form' style={form.values.category === 'Ноутбуки' ? {maxWidth: "800px"} : {}} onSubmit={form.handleSubmit}>
+                    <Sample onShowSelection={onShowSelection} values={form.values.sample} addRef={addRef} prices={mainData} onChoice={onChoice}/>
+                    <Category onShowSelection={onShowSelection} values={form.values.category} addRef={addRef} category={Object.keys(DataOperator.dictionaryMetal)} onChoice={onChoice}/>
+                    <Condition onShowSelection={onShowSelection} values={form.values.condition} addRef={addRef} condition={condition} onChoice={onChoice}/>
+                    <Weight values={form.values.weight} onNumberEvent={onNumberEvent}/>
                     <div className="option btn">
                         <button ref={refResultDiv} className='calculate' type='submit'>Розрахувати</button>
                     </div>

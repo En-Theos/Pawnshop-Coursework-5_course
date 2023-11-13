@@ -1,39 +1,47 @@
-import { ICondition , IDataMetal, IDataLaptop, IDataMonitop, IDataPhone, IDataPhotoCamera, IDataTablet, IDataTv, IDataVideoCamera } from "./interfaces";
+import { ICondition , IDataMetal, IDataTechnique } from "./interfaces";
 
 export default class DataOperator {
     private static presenceMetal?: IDataMetal[];
-    private static presenceLaptop?: IDataLaptop[];
-    private static presenceMonitor?: IDataMonitop[];
-    private static presencePhone?: IDataPhone[];
-    private static presencePhotoCamera?: IDataPhotoCamera[];
-    private static presenceTablet?: IDataTablet[];
-    private static presenceTv?: IDataTv[];
-    private static presenceVideoCamera?: IDataVideoCamera[];
+    private static presenceLaptop?: IDataTechnique[];
+    private static presenceMonitor?: IDataTechnique[];
+    private static presencePhone?: IDataTechnique[];
+    private static presencePhotoCamera?: IDataTechnique[];
+    private static presenceTablet?: IDataTechnique[];
+    private static presenceTv?: IDataTechnique[];
+    private static presenceVideoCamera?: IDataTechnique[];
     
-    public static category: {
-        en: string;
-        ua: string;
-    }[] = [
-        { en: "rings", ua: "Каблучки" },
-        { en: "earrings", ua: "Сережки" },
-        { en: "pendants", ua: "Кулони" },
-        { en: "crosses", ua: "Крестики" },
-        { en: "chains", ua: "Ланцюжки" },
-        { en: "bracelets", ua: "Браслети" },
-        { en: "wedding ring", ua: "Обручка" }
-    ];
-    public static type: {
-        en: string;
-        ua: string;
-    }[] = [
-        { en: "laptop", ua: "Ноутбуки" },
-        { en: "monitor", ua: "Монітори" },
-        { en: "phone", ua: "Телефони" },
-        { en: "photo camera", ua: "Фотокамери" },
-        { en: "tablet", ua: "Планшети" },
-        { en: "tv", ua: "Телевізори" },
-        { en: "video camera", ua: "Відеокамери" }
-    ];
+    public static dictionaryMetal: Record<string, string> = {
+        "Каблучки": "rings",
+        "Сережки": "earrings",
+        "Кулони": "pendants",
+        "Крестики": "crosses",
+        "Ланцюжки": "chains",
+        "Браслети": "bracelets",
+        "Обручка": "weddingRing"
+    };
+    public static dictionaryTechnique: Record<string, string> = { 
+        "Ноутбуки": "laptop",
+        "Монітори": "monitor",
+        "Телефони": "phone",
+        "Фотокамери": "photoCamera",
+        "Планшети": "tablets",
+        "Телевізори": "tv",
+        "Відеокамери": "videoCamera",
+        "---":"---",
+        "Модель": "model",
+        "Процесор": "processor",
+        "Оперативна пам'ять": "RAM",
+        "SSD": "SSD",
+        "Відеокарта": "graphicCard",
+        "Роздільна здатність": "resolution",
+        "Екран": "screen",
+        "Додаткова можливість": "additionalFeature",
+        "Виробник": "producer",
+        "HDD": "HDD",
+        "Аксесуар": "accessory",
+        "Захист" :"protection",
+        
+    };
 
     private static presenceState?: ICondition[];
 

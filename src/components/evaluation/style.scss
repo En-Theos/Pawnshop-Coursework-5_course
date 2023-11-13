@@ -15,14 +15,15 @@
             border: 3px solid #bb9c66;
             border-image: linear-gradient(to top, #8d652e 0%, #c3a775 100%);
             border-image-slice: 1;
-            padding: 35px 0;
-
+            padding: 35px 20px;
+         
             .option {
                 display: flex;
                 flex-direction: column;
                 position: relative;
                 max-width: 360px;
                 margin: 0 auto 25px;
+                flex-grow: 1;
 
                 label {
                     display: block;
@@ -38,7 +39,7 @@
                     input {
                         display: block;
                         margin-top: 5px;
-                        padding: 0 13px;
+                        padding: 0 50px 0 13px;
                         border: 1px solid #bb9c66;
                         border-radius: 5px;
                         width: 100%;
@@ -68,12 +69,14 @@
 
                         div {
                             font-weight: 300;
-                            letter-spacing: 3px;
+                            letter-spacing: 1px;
                             padding: 15px;
-                            text-transform: lowercase;
+                            text-transform: lowercase;  
                             background-color: white;
                             cursor: pointer;
                             transition: .3s;
+                            font-family: $PTSans;
+                            border-bottom: 1px #bb9c6651 solid;
 
                             &:hover {
                                 background-color: #feefb0;
@@ -155,3 +158,4 @@
         }
     }
 }
+
