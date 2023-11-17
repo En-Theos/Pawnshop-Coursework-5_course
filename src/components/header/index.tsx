@@ -41,7 +41,7 @@ export default function Header() {
                                     <Link to="evaluation/technique">Техніки</Link>
                                 </div>
                                 <div>
-                                    <a href="">Наручних годинників</a>
+                                    <Link to="evaluation/wristwatch">Наручних годинників</Link>
                                 </div>
                                 <div>
                                     <a href="">Предметів мистецтва</a>

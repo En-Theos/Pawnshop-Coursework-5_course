@@ -1,5 +1,5 @@
 import Title from "../../components/title";
-import Evaluation from "../../components/evaluation/evaluationMetal";
+import EvaluationMetal from "../../components/evaluation/evaluationMetal";
 import Prices from "../../components/prices";
 import BlockText from "../../components/blockText";
 import CallBlock from "../../components/callBlock";
@@ -10,7 +10,7 @@ export default function SilverPage() {
     return (
         <main className="evaluationPage">
             <Title minorTitle={{ text: "Оцiнка срiбла" }} mainTitle={{ text: "Ви можете отримати кредит за 3 хвилини! Для цього потрібен лише предмет застави, ІПН, паспорт або інший документ, який ідентифікує особу.", size: "20px" }} />
-            <Evaluation type={"silver"}/>
+            <EvaluationMetal type={"silver"}/>
             <Prices type={"silver"}/>
             <BlockText text={["Срібло - популярний ювелірний метал. Використовується для прикрас, монет, предметів побуту ... Воно має стабільно високу вартість і часто виступає у ролі застави. Заложити срібло в ломбард - це простий, вигідний спосіб отримати кредит під заставу.",
                 "У чистому вигляді срібло (аргентум) досить м'який метал. Збільшити стійкість допомагає доля міді в виробі. Кількість дорогоцінного металу в сплаві вказує проба. Стандартна проба в Україні - 925. Більш низький вміст срібла використовується для предметів побуту і інтер'єру. Такий сплав називається Sterling Silver. Найменша проба у сплаві для карбування монет. Він має червонуватий відтінок і з часом може втрачати первинну форму.",

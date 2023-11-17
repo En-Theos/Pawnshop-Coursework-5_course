@@ -1,5 +1,5 @@
 import Title from "../../components/title";
-import Evaluation from "../../components/evaluation/evaluationMetal";
+import EvaluationMetal from "../../components/evaluation/evaluationMetal";
 import Prices from "../../components/prices";
 import BlockText from "../../components/blockText";
 import CallBlock from "../../components/callBlock";
@@ -10,7 +10,7 @@ export default function GoldPage() {
     return (
         <main className="evaluationPage">
             <Title minorTitle={{ text: "Оцiнка золота" }} mainTitle={{ text: "Ви можете отримати кредит за 3 хвилини! Для цього потрібен лише предмет застави, ІПН, паспорт або інший документ, який ідентифікує особу.", size: "20px" }} />
-            <Evaluation type={"gold"}/>
+            <EvaluationMetal type={"gold"}/>
             <Prices type={"gold"}/>
             <BlockText text={["Золото - символ благополуччя. Народження фінансової системи, кредитування, нерозривно пов'язані з дорогоцінними металами. У сучасному світі скупкою золота займається кожен ломбард, підтверджуючи справжню цінність такого зощадження. Приймається золото в злитках, золоті прикраси, предмети інтер'єру тощо. Процедура оформлення кредиту проста і займає не більше 3 хвилин.",
                 "Щоб вигідно здати золоті прикраси - розрахуйте їх приблизну вартість на нашому калькуляторі оцінки. Інші формальності зводяться до огляду експертом, уточненню вартості і підписанню договору.",

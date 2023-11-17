@@ -12,7 +12,7 @@ import Category from '../inputs/Category';
 
 import "../style.scss";
 
-export default function EvaluationGold() {
+export default function EvaluationTechnique() {
     // Локальний стейт для статичних даних цін певної категорії товарів
     const [mainData, setMainData] = useState<Record<string, IDataTechnique[] | undefined>>();
     // Локальний стейт для статичних даних описів стану предмету

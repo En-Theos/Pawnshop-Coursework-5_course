@@ -2,7 +2,6 @@ import { IDataTechnique } from "../../../staticData/interfaces";
 
 import DataOperator from "../../../staticData/dataOperator";
 
-// Компонент випадаючого списку із оціночними станами предмету
 export default function SearchInput({onShowSelection, value, addRef, data, onChoice, form, prices}: {
     onShowSelection(event: React.MouseEvent<HTMLLabelElement, MouseEvent>): void,
     value: string | undefined,

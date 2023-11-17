@@ -13,7 +13,7 @@ import Weight from '../inputs/Weigth';
 
 import "../style.scss"
 
-export default function EvaluationGold({type}: {type: "gold" | "silver"}) {
+export default function EvaluationMetal({type}: {type: "gold" | "silver"}) {
     // Локальний стейт для статичних даних цін певної категорії товарів
     const [mainData, setMainData] = useState<IDataMetal[]>();
     // Локальний стейт для статичних даних описів стану предмету
@@ -163,7 +163,7 @@ export default function EvaluationGold({type}: {type: "gold" | "silver"}) {
     return (
         <article className='calc'>
             <div className="limit">
-                <form autoComplete="off" className='form' style={form.values.category === 'Ноутбуки' ? {maxWidth: "800px"} : {}} onSubmit={form.handleSubmit}>
+                <form autoComplete="off" className='form' onSubmit={form.handleSubmit}>
                     <Sample onShowSelection={onShowSelection} values={form.values.sample} addRef={addRef} prices={mainData} onChoice={onChoice}/>
                     <Category onShowSelection={onShowSelection} values={form.values.category} addRef={addRef} category={Object.keys(DataOperator.dictionaryMetal)} onChoice={onChoice}/>
                     <Condition onShowSelection={onShowSelection} values={form.values.condition} addRef={addRef} condition={condition} onChoice={onChoice}/>

@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const port = 3001;
 const getConnection = require('./database'); // Імпортуємо функцію для отримання з'єднання
+const multer = require('multer');
+const path = require('path');
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // Конкретний домен
@@ -45,6 +47,39 @@ app.get('/video_camera_prices', async (req, res) => {
 
 app.get('/state', async (req, res) => {
   reqBody(res, 'SELECT * FROM state')
+});
+
+const storage = multer.diskStorage({
+  destination: 'server/uploads/', // директорія, де будуть зберігатися файли
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
+
+// Обробник маршруту для завантаження файлів
+app.post('/upload', upload.array('images', 2), async (req, res) => {
+  try {
+    const files = req.files;
+    const fullName = req.body.fullName;
+    const nameProduct = req.body.nameProduct;
+    const phone = parseInt(req.body.phone);
+    console.log(files)
+    const connection = await getConnection();
+
+    // Обробка кожного завантаженого файлу
+    files.forEach(async (file) => {
+      const { filename, path } = file;
+      // Зберігаємо інформацію про файл в базу даних
+      const [result] = await connection.query('INSERT INTO applicationsForWatch (fullName, phone, nameProduct, filename, path) VALUES (?, ?, ?, ?, ?)', [fullName, phone, nameProduct, filename, path]);
+    });
+
+    res.json({ success: true, message: 'Files uploaded successfully!' });
+  } catch (error) {
+    console.error('Error uploading files:', error);
+    res.status(500).json({ success: false, message: 'Error uploading files.' });
+  }
 });
 
 app.listen(port, () => {
