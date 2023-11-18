@@ -44,7 +44,7 @@ export default function Header() {
                                     <Link to="evaluation/wristwatch">Наручних годинників</Link>
                                 </div>
                                 <div>
-                                    <a href="">Предметів мистецтва</a>
+                                    <Link to="evaluation/antiques">Предметів мистецтва</Link>
                                 </div>
                             </div>
                         </div>

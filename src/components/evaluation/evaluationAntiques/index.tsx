@@ -12,11 +12,9 @@ import Files from '../inputs/Files';
 import "../style.scss"
 import Basic from '../inputs/Basic';
 
-export default function EvaluationWristwatch() {
+export default function EvaluationAntiques() {
     // Локальний стейт для статичних даних описів стану предмету
     const [condition, setCondition] = useState<ICondition[]>();
-
-    const [acordion, setAcordion] = useState<boolean>(false);
 
     // Ініціалізація Formik 
     const form = useFormik<IForm>({
@@ -85,7 +83,7 @@ export default function EvaluationWristwatch() {
             formData.append('fullName', form.values.fullName);
             formData.append('phone', form.values.phone + '');
             formData.append('nameProduct', form.values.nameProduct);
-            formData.append('type', 'Наручний годинник');
+            formData.append('type', 'Антикваріат');
             formData.append('state', form.values.condition);
 
             fetch("http://localhost:3001/upload", {
@@ -155,21 +153,7 @@ export default function EvaluationWristwatch() {
         <article className='calc'>
             <div className="limit">
                 <form autoComplete="off" className='form' onSubmit={form.handleSubmit}>
-                    <h3 className='titleWristwatch'>Заявка на оцінку годинника</h3>
-                    <div className='acordionWristwatch'>
-                        <p onClick={() => setAcordion((acordion) => !acordion)}><span>Від чого залежить оцінка?</span> <img src="/image/ico/header/arrow_left.svg" alt="Ups..." /></p>
-                        <div style={acordion ? {height: "fit-content", padding: "0 15px 15px"} : {height: "0", padding: "0 15px 0"}}>
-                            <p>Оцінювальна вартість годинника здебільшого залежить від наступних характеристик: </p>
-                            <ul >
-                                <li>марка (виробник);</li>
-                                <li>модель;</li>
-                                <li>ринкова ціна на конкретну модель (може встановлюватися клієнтом якщо потрібна негайна відповідь);</li>
-                                <li>зовнішній стан годинника;</li>
-                                <li>наявність оригінальної упаковки і документів;</li>
-                            </ul>
-                            <p>Справжність годинника і стан механізму перевіряються у ломбардному відділенні.</p>
-                        </div>
-                    </div>
+                    <h3 style={{marginBottom: "25px"}} className='titleWristwatch'>Заявка на оцінку антикваріату</h3>
                     <Basic name='fullName' label='ПІБ' placeholder="Прізвище, ім'я, по батькові" value={form.values.fullName} form={form} refResultDiv={refResultDiv}/>
                     <Basic name='nameProduct' label='Назва годинника' placeholder='Виробник, модель годинника' value={form.values.nameProduct} form={form} refResultDiv={refResultDiv}/>
                     <Basic name='phone' label='Ваш номер телефону' placeholder='+380' number={true} value={form.values.phone+''} form={form} refResultDiv={refResultDiv}/>

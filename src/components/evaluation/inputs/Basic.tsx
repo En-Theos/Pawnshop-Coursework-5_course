@@ -1,12 +1,15 @@
+import { RefObject } from "react";
+
 export default function SearchInput(
-    {name, label, placeholder, number, value, form}: 
+    {name, label, placeholder, number, value, form, refResultDiv}: 
     {
         name: string, 
         label: string, 
         placeholder: string, 
         number?: boolean,
         value: string,
-        form: any
+        form: any,
+        refResultDiv: RefObject<HTMLButtonElement>
     }
     ) {
     
@@ -18,7 +21,9 @@ export default function SearchInput(
         } else {
             validValue = e.target.value;
         }
-
+        if (refResultDiv.current) {
+            refResultDiv.current.textContent = "Розрахувати";
+        }
         form.setFieldValue(name, validValue);
     }
 
