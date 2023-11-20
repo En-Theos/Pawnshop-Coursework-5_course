@@ -1,0 +1,140 @@
+@import '../../styles/fonts';
+
+.lot {
+    display: flex;
+    flex-direction: column;
+    .imageLot {
+        position: relative;
+        border: 3px solid #bb9c66;
+        margin-bottom: 30px;
+        a {
+            >img {
+                width: 250px;
+                height: 250px;
+                object-fit: cover;
+            }
+        }
+        .timer {
+            position: absolute;
+            bottom: -4px;
+            width: 100%;
+            z-index: 0;
+            text-align: center;
+            &::before {
+                z-index: -1;
+                content: '';
+                position: absolute;
+                display: block;
+                margin: auto;
+                height: 0;
+                width: 0;
+                left: 0;
+                right: 0;
+                top: -8px;
+                border-left: 75px solid transparent;
+                border-right: 75px solid transparent;
+                border-bottom: 50px solid white;
+            }
+            img {
+                display: inline-block;
+                margin-bottom: 8px;
+            }
+            p {
+                color: #000000;
+                font-family: $PTSansNarrow;
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+    }
+    .nameLot {
+        height: 50px;
+        margin-bottom: 30px;
+        p {
+            text-align: center;
+            span {
+                color: #000000;
+                font-family: $PFDinTextCondPro;
+                font-size: 21px;
+                font-weight: 500;
+                line-height: 25px;
+                text-transform: uppercase;
+            }
+        }
+    }
+    .dataLot {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        .views , .bids {
+            text-align: center;
+            width: 50px;
+            border-bottom: 1px solid #bb9c66;
+            padding-bottom: 4px;
+            img {
+                display: inline-block;
+                margin-bottom: 8px;
+            }
+            p {
+                color: #000000;
+                font-family: $PTSans;
+                font-size: 14px;
+                font-weight: 700;
+            }
+        }
+        .rate {
+            position: relative;
+            text-align: center;
+            padding-top: 7px;
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                width: 70px;
+                height: 70px;
+                border: 1px solid #bb9c66;
+                transform: rotateZ(45deg) ;
+                z-index: -1;
+            }
+            p {
+                &:first-child {
+                    color: #000000;
+                    font-family: $PTSans;
+                    font-size: 14px;
+                    font-weight: 400;
+                    margin-bottom: 13px;
+                }
+                &:nth-child(2) {
+                    color: #1c242a;
+                    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                    font-size: 25px;
+                    font-weight: 400;
+                    margin-bottom: 10px;
+                }
+                &:last-child {
+                    color: #1c242a;
+                    font-size: 16px;
+                }   
+            }
+        }
+    }
+    button {
+        width: 200px;
+        height: 50px;
+        margin: 0 auto;
+        border: 3px solid #bb9c66;
+        border-image: linear-gradient(to top, #8d652e 0%,  #c3a775 100%);
+        border-image-slice: 1;
+        background-color: unset;
+        span {
+            color: #000000;
+            font-family: $PFDinTextCondPro;
+            font-size: 21px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+    }
+}

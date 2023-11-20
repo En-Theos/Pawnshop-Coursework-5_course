@@ -49,6 +49,16 @@ app.get('/state', async (req, res) => {
   reqBody(res, 'SELECT * FROM state')
 });
 
+app.get('/lots', async (req, res) => {
+  reqBody(res, `
+    SELECT goods_for_sale.*, MAX(bids.rate) as rate, COUNT(bids.id_goods) as bids
+    FROM goods_for_sale 
+    INNER JOIN bids ON goods_for_sale.id = bids.id_goods 
+    WHERE goods_for_sale.category = "Аукціон"
+    GROUP BY goods_for_sale.id
+  `);
+})
+
 const storage = multer.diskStorage({
   destination: 'server/uploads/', // директорія, де будуть зберігатися файли
   filename: function (req, file, cb) {

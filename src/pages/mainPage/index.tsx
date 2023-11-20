@@ -4,7 +4,6 @@ import Title from "../../components/title";
 import CategoriesGoods from "../../components/categoriesGoods";
 import BlockText from "../../components/blockText";
 import FreeServices from "../../components/freeServices";
-import Quote from "../../components/quote";
 import ReviewsAndNews from "../../components/reviewsAndNews";
 
 import "./style.scss"
@@ -32,8 +31,7 @@ export default function MainPage() {
                     <FreeServices />
                 </section>
                 <aside className="secondaryInfo">
-                    <Title minorTitle={{ text: "Цiкавi" }} mainTitle={{ text: "Цитати" }} />
-                    <Quote />
+                    <Title minorTitle={{ text: "" }} mainTitle={{ text: "Додатково" }} />
                     <ReviewsAndNews />
                 </aside>
             </main>

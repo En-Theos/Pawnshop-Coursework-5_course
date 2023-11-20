@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
+import lots from '../slices/lots';
+
 export const store = configureStore({
-  reducer: {
-    
-  },
+  reducer: {lots}
 });
 
 export type AppDispatch = typeof store.dispatch;
