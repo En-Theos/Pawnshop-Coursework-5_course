@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-export function Bid({rate}: {
+export default function Bid({rate}: {
     rate: number
 }) {
     const [bid, setBid] = useState<string>('0');
 
     useEffect(() => {
         setBid(state => {
-            const numberString = rate.toString();
+            const numberString = rate.toString().split('.')[0];
     
             const dividedParts = [];
             let temporaryPart = '';
@@ -25,7 +25,7 @@ export function Bid({rate}: {
     
             return result;
         })
-    }, []);
+    }, [rate]);
     
     return (
         <p className="bid">

@@ -1,0 +1,79 @@
+@import '../../styles/fonts';
+
+body {
+    position: relative;
+    .modal {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #00000047;
+        .content {
+            margin: 100px auto 0;
+            width: 500px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            padding: 30px 10px;
+            border-radius: 10px;
+            p {
+                color: #000000;
+                font-family: "PFDinTextCondPro";
+                font-size: 18px;
+                font-weight: 400;
+                letter-spacing: 3px;
+                margin-bottom: 20px;
+            }
+            .name {
+                line-height: 25px;
+            }
+            
+            .field {
+                margin-bottom: 25px;
+                p {
+                    margin-bottom: 5px;
+                }
+                input, button {
+                    width: 300px;
+                    margin: 0 auto;
+                    border: 3px solid #bb9c66;
+                    padding: 5px;
+                    border-image: linear-gradient(to top, #8d652e 0%, #c3a775 100%);
+                    border-image-slice: 1;
+                    background-color: unset;
+                    color: #000000;
+                    font-family: "PFDinTextCondPro";
+                    font-size: 20px;
+                    font-weight: 400;
+                }
+                button {
+                    width: 210px;
+                    height: 60px;
+                    font-size: 23px;
+                }
+
+                .input {
+                    display: block;
+                    margin-bottom: 3px;
+                }
+
+                .errorMessage {
+                    display: block;
+                    font-family: "PFDinTextCondPro";
+                    color: red;
+                    font-size: 16px;
+                }
+            }
+        }
+        
+    }
+    .active {
+        display: block;
+    }
+}

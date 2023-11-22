@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export function Timer({deadline} : {deadline: string}) {
+export default function Timer({deadline} : {deadline: string}) {
     const [date, setDate] = useState<{days: string, hours: string, minutes: string, seconds: string}>(
         {days: '0', hours: '00', minutes: '00', seconds: '00'}
     );

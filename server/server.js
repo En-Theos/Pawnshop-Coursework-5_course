@@ -1,13 +1,15 @@
 const express = require('express');
-const app = express();
-const port = 3001;
 const getConnection = require('./database'); // Імпортуємо функцію для отримання з'єднання
 const multer = require('multer');
 const path = require('path');
 
+const app = express();
+const port = 3001;
+
+app.use(express.json());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // Конкретний домен
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.header('Access-Control-Allow-Credentials', true);
   next();
@@ -78,7 +80,7 @@ app.post('/upload', upload.array('images', 2), async (req, res) => {
     const type = req.body.type;
     const phone = parseInt(req.body.phone);
     const state = req.body.state;
-
+    
     const connection = await getConnection();
 
     // Обробка кожного завантаженого файлу
@@ -94,6 +96,46 @@ app.post('/upload', upload.array('images', 2), async (req, res) => {
     res.status(500).json({ success: false, message: 'Error uploading files.' });
   }
 });
+
+app.post('/upAnte', async (req, res) => {
+  try {
+    const id = req.body.id;
+    const rate = req.body.rate;
+    const name = req.body.name;
+    const email = req.body.email;
+    const connection = await getConnection();
+
+    const [result] = await connection.query(`
+      INSERT INTO bids (id_goods, rate, name, email) 
+      VALUES (?, ?, ?, ?)`, [id, rate, name, email]
+    );
+
+    res.json({ success: true, message: 'Files uploaded successfully!' });
+  } catch (error) {
+    console.error('Error uploading files:', error);
+    res.status(500).json({ success: false, message: 'Error uploading files.' });
+  }
+})
+
+app.patch('/addViews', async (req, res) => {
+  try {
+    const id = req.body.id;
+    const views = req.body.views;
+   
+    const connection = await getConnection();
+
+    const [result] = await connection.query(`
+      UPDATE goods_for_sale
+      SET views = ?
+      WHERE id = ?`, [views, id]
+    );
+
+    res.json({ success: true, message: 'Files uploaded successfully!' });
+  } catch (error) {
+    console.error('Error uploading files:', error);
+    res.status(500).json({ success: false, message: 'Error uploading files.' });
+  }
+})
 
 app.listen(port, () => {
   console.log(`Сервер запущено на порту ${port}`);
