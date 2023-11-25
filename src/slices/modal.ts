@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState: {
     show: boolean,
-    idData: number
+    idData: number,
+    ifViews: boolean
 } = {
     show: false,
-    idData: -1
+    idData: -1,
+    ifViews: true
 }
 
 const heroesSlice = createSlice({
@@ -16,6 +18,12 @@ const heroesSlice = createSlice({
         hideModal: state => {state.show = false},
         setIdData: (state, action) => {
             state.idData = action.payload
+        },
+        trueIfViews: state => {
+            state.ifViews = true;
+        },
+        falseIfViews: state => {
+            state.ifViews = false;
         }
     }
 });
@@ -27,5 +35,7 @@ export default reducer;
 export const {
     showModal,
     hideModal,
-    setIdData
+    setIdData,
+    trueIfViews,
+    falseIfViews
 } = actions

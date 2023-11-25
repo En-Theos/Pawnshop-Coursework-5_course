@@ -10,5 +10,6 @@ export interface IDataLots {
     views: number,
     end_date: any,
     rate: number,
-    bids: number
+    bids: number,
+    descriptionState: string
 }

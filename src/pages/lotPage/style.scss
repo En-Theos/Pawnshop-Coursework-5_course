@@ -1,0 +1,11 @@
+.lotPage {
+    >.limit {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 15px;
+        .title {
+            margin: 0 auto;
+            margin-bottom: 40px;
+        }
+    }
+}

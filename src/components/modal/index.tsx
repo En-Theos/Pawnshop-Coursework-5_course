@@ -11,6 +11,7 @@ import "./style.scss";
 export default function Modal() {
     const show = useAppSelector(state => state.modal.show)
     const idData = useAppSelector(state => state.modal.idData)
+    const ifViews = useAppSelector(state => state.modal.ifViews)
     const data = useAppSelector(selectLotsById(idData));
 
     const dispatch = useAppDispatch();
@@ -32,23 +33,36 @@ export default function Modal() {
             validationSchema={Yup.object({
                 name: Yup.string().required("Це поле обов'язкове"),
                 email: Yup.string().email("Не правильний формат email"),
-                rate: Yup.number().min(data.rate + 1, `Ви повинні ввести суму більшу за теперішню: ${data.rate}`)
+                rate: Yup.number().min((data.rate || data.market_price) + 1, `Ви повинні ввести суму більшу за теперішню: ${data.rate || data.market_price}`)
             })}
             onSubmit={({ name, email, rate }, { resetForm }) => {
-                Promise.all([
-                    axios.patch("http://localhost:3001/addViews", { id: data.id, views: data.views + 1 }),
-                    axios.post("http://localhost:3001/upAnte", { id: data.id, name, email, rate })
-                ]).then(() => {
-                    dispatch(lotsUpdate({
-                        id: data.id,
-                        changes: {
-                            rate,
-                            bids: data.bids + 1,
-                            views: data.views + 1
-                        }
-                    }));
-                    resetForm();
-                });
+                if (ifViews) {
+                    Promise.all([
+                        axios.patch("http://localhost:3001/addViews", { id: data.id }),
+                        axios.post("http://localhost:3001/upAnte", { id: data.id, name, email, rate })
+                    ]).then(() => {
+                        dispatch(lotsUpdate({
+                            id: data.id,
+                            changes: {
+                                rate,
+                                bids: data.bids + 1,
+                                views: data.views + 1
+                            }
+                        }));
+                        resetForm();
+                    });
+                } else {
+                    axios.post("http://localhost:3001/upAnte", { id: data.id, name, email, rate }).then(() => {
+                        dispatch(lotsUpdate({
+                            id: data.id,
+                            changes: {
+                                rate,
+                                bids: data.bids + 1,
+                            }
+                        }));
+                        resetForm();
+                    });
+                }
             }}>
             {({ resetForm }) => (
                 <div className={"modal" + (show ? " active" : "")} onClick={(e) => {

@@ -2,7 +2,8 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { lotsFetching, lotsFetched, lotsFetchingError, selectAll as selectLots } from "../../slices/lots";
 import { useEffect } from "react";
 
-import Lot from "./lot";
+import LotCard from "./lotCard";
+import axios from "axios";
 
 export default function Lots({wrapedClass, limit, wrapedElement}: {
     wrapedClass: string,
@@ -16,18 +17,17 @@ export default function Lots({wrapedClass, limit, wrapedElement}: {
 
     useEffect(() => {
         dispatch(lotsFetching());
-        fetch('http://localhost:3001/lots').then(response => response.json())
-            .then((data) => {
-                dispatch(lotsFetched(data));
-            }).catch(() => {
-                dispatch(lotsFetchingError());
-            })
+        axios.get('http://localhost:3001/lots').then(({data}) => {
+            dispatch(lotsFetched(data));
+        }).catch(() => {
+            dispatch(lotsFetchingError());
+        });
     }, []);
 
     function isWrapedElement() {
         const children = lots.slice(0, limit === 'all' ? lots.length : limit).map((item) => {
             return <div className={wrapedClass} key={item.id} id={"a" + item.id}>
-                <Lot
+                <LotCard
                     image={item.picture}
                     deadline={item.end_date}
                     name={item.name}

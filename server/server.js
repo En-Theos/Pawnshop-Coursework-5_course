@@ -53,11 +53,25 @@ app.get('/state', async (req, res) => {
 
 app.get('/lots', async (req, res) => {
   reqBody(res, `
-    SELECT goods_for_sale.*, MAX(bids.rate) as rate, COUNT(bids.id_goods) as bids
+    SELECT goods_for_sale.*, state.description as descriptionState, MAX(bids.rate) as rate, COUNT(bids.id_goods) as bids
     FROM goods_for_sale 
-    INNER JOIN bids ON goods_for_sale.id = bids.id_goods 
-    WHERE goods_for_sale.category = "Аукціон"
-    GROUP BY goods_for_sale.id
+    LEFT JOIN bids ON goods_for_sale.id = bids.id_goods
+    INNER JOIN state ON goods_for_sale.state = state.state
+    WHERE goods_for_sale.category = "Аукціон" 
+    GROUP BY goods_for_sale.id, state.description
+  `);
+})
+
+app.get('/lot', async (req, res) => {
+  const id = req.query.id;
+  
+  reqBody(res, `
+    SELECT goods_for_sale.*, state.description as descriptionState, MAX(bids.rate) as rate, COUNT(bids.id_goods) as bids
+    FROM goods_for_sale 
+    LEFT JOIN bids ON goods_for_sale.id = bids.id_goods
+    INNER JOIN state ON goods_for_sale.state = state.state
+    WHERE goods_for_sale.id = ${id} 
+    GROUP BY goods_for_sale.id, state.description
   `);
 })
 
@@ -120,14 +134,13 @@ app.post('/upAnte', async (req, res) => {
 app.patch('/addViews', async (req, res) => {
   try {
     const id = req.body.id;
-    const views = req.body.views;
    
     const connection = await getConnection();
 
     const [result] = await connection.query(`
       UPDATE goods_for_sale
-      SET views = ?
-      WHERE id = ?`, [views, id]
+      SET views = views + 1
+      WHERE id = ?`, [id]
     );
 
     res.json({ success: true, message: 'Files uploaded successfully!' });
