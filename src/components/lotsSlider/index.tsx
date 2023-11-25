@@ -25,7 +25,7 @@ export default function LotsSlider() {
     return (
         <article className="products">
             <div className="limit">
-                <Lots wrapedClass="slide" limit={9} wrapedElement={(children) => {
+                <Lots type="lots" wrapedClass="slide" limit={9} wrapedElement={(children) => {
                     return <Slider ref={sliderRef} {...settings}>
                         {children}
                     </Slider>

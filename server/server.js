@@ -62,7 +62,17 @@ app.get('/lots', async (req, res) => {
   `);
 })
 
-app.get('/lot', async (req, res) => {
+app.get('/products', async (req, res) => {
+  reqBody(res, `
+    SELECT goods_for_sale.*, state.description as descriptionState
+    FROM goods_for_sale 
+    INNER JOIN state ON goods_for_sale.state = state.state
+    WHERE goods_for_sale.category = "Продаж" AND goods_for_sale.status != "куплено"
+    GROUP BY goods_for_sale.id, state.description
+  `);
+})
+
+app.get('/single', async (req, res) => {
   const id = req.query.id;
   
   reqBody(res, `
@@ -140,6 +150,25 @@ app.patch('/addViews', async (req, res) => {
     const [result] = await connection.query(`
       UPDATE goods_for_sale
       SET views = views + 1
+      WHERE id = ?`, [id]
+    );
+
+    res.json({ success: true, message: 'Files uploaded successfully!' });
+  } catch (error) {
+    console.error('Error uploading files:', error);
+    res.status(500).json({ success: false, message: 'Error uploading files.' });
+  }
+})
+
+app.patch('/addOrder', async (req, res) => {
+  try {
+    const id = req.body.id;
+   
+    const connection = await getConnection();
+
+    const [result] = await connection.query(`
+      UPDATE goods_for_sale
+      SET status = 'в обробці'
       WHERE id = ?`, [id]
     );
 

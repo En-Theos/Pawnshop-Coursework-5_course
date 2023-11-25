@@ -5,10 +5,11 @@ import { useEffect } from "react";
 import LotCard from "./lotCard";
 import axios from "axios";
 
-export default function Lots({wrapedClass, limit, wrapedElement}: {
+export default function Lots({wrapedClass, limit, wrapedElement, type}: {
     wrapedClass: string,
     limit: number | 'all', 
-    wrapedElement?: (children: any) => any
+    wrapedElement?: (children: any) => any,
+    type: "lots" | "products"
 }) {
     const lots = useAppSelector(selectLots);
     const lotsStatus = useAppSelector(state => state.lots.lotsStatus)
@@ -17,7 +18,7 @@ export default function Lots({wrapedClass, limit, wrapedElement}: {
 
     useEffect(() => {
         dispatch(lotsFetching());
-        axios.get('http://localhost:3001/lots').then(({data}) => {
+        axios.get(`http://localhost:3001/${type}`).then(({data}) => {
             dispatch(lotsFetched(data));
         }).catch(() => {
             dispatch(lotsFetchingError());
@@ -34,6 +35,7 @@ export default function Lots({wrapedClass, limit, wrapedElement}: {
                     views={item.views}
                     rate={item.rate}
                     bids={item.bids} 
+                    type={type}
                     all={item}/>
             </div>
         })

@@ -1,11 +1,9 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { lotsFetched, lotsFetching, lotsFetchingError, selectAll as selectLots } from "../../slices/lots";
-
-import { ICondition } from "../../staticData/interfaces";
 
 import Title from "../../components/title";
 
@@ -14,7 +12,8 @@ import Lot from "../../components/lot";
 
 export default function LotPage() {
     const { id } = useParams();
-
+    const location = useLocation().pathname.split("/")[1];
+    
     const lots = useAppSelector(selectLots);
     const lotsStatus = useAppSelector(state => state.lots.lotsStatus)
 
@@ -23,7 +22,7 @@ export default function LotPage() {
     useEffect(() => {
         if (lots.length === 0) {
             dispatch(lotsFetching());
-            axios.get(`http://localhost:3001/lot?id=${id}`).then(({ data }) => {
+            axios.get(`http://localhost:3001/single?id=${id}`).then(({ data }) => {
                 dispatch(lotsFetched(data));
             }).catch((error) => {
                 dispatch(lotsFetchingError());
@@ -36,8 +35,8 @@ export default function LotPage() {
         return (
             <main className="lotPage">
                 <div className="limit">
-                    <Title minorTitle={{ text: "" }} mainTitle={{ text: `Лот #${id}` }} />
-                    <Lot id={parseInt(id || "-1")} />
+                    <Title minorTitle={{ text: "" }} mainTitle={{ text: location === "shop" ? `Товар #${id}` : `Лот #${id}`}  } />
+                    <Lot id={parseInt(id || "-1")} type={location}/>
                 </div>
             </main>
         )

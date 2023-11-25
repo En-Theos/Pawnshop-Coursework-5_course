@@ -24,7 +24,7 @@ const heroesSlice = createSlice({
         lotsUpdate: (state, action) => {
             lotsAdapter.updateOne(state, action.payload);
             state.lotsStatus = 'idle';
-        },
+        }
     }
 });
 

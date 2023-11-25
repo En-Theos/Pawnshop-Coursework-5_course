@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import {MainPage, GoldPage, SilverPage, TechniquePage, WristwatchPage, AntiquesPage, AuctionPage, LotPage} from "./pages"
+import {MainPage, GoldPage, SilverPage, TechniquePage, WristwatchPage, AntiquesPage, AuctionPage, LotPage, ShopPage} from "./pages"
 
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -19,7 +19,10 @@ function App() {
           <Route path="/evaluation/wristwatch" element={<WristwatchPage/>}/>
           <Route path="/evaluation/antiques" element={<AntiquesPage/>}/>
           <Route path="/auction" element={<AuctionPage/>}/>
-          <Route path="/lots/:id" element={<LotPage/>}/>
+          <Route path="/auction/single/:id" element={<LotPage/>}/>
+          <Route path="/shop/single/:id" element={<LotPage/>}/>
+          <Route path="/single/:id" element={<LotPage/>}/>
+          <Route path="/shop" element={<ShopPage/>}/>
         </Routes>
         <Footer />
         <Modal />

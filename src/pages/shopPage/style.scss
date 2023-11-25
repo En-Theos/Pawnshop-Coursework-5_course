@@ -1,0 +1,19 @@
+.shop {
+    margin-bottom: 80px;
+    .products {
+        >.limit {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 970px;
+            padding: 0 15px;
+            margin: 0 auto;
+            gap: 30px;
+            .product_limit {
+                width: fit-content;
+                padding: 10px;
+                box-shadow: 0px 0px 15px 1px #cfcccc;
+            }
+        }
+    }
+}

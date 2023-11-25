@@ -175,31 +175,8 @@ header {
 
         .actions {
             display: flex;
-
-            .region {
-                margin-right: 25px;
-                display: flex;
-                align-items: center;
-
-                img {
-                    transform: translateY(-2px);
-                    margin-right: 10px;
-                }
-
-                a {
-                    color: #ffffff;
-                    font-family: $PFDinTextCondPro;
-                    font-size: 14px;
-                    font-weight: 400;
-                    text-transform: uppercase;
-                    letter-spacing: 1.4px;
-                    transition: color .3s linear;
-
-                    &:hover {
-                        color: #bb9c66;
-                    }
-                }
-            }
+            width: 155px;
+            justify-content: flex-end;
 
             .userMenu {
                 position: relative;

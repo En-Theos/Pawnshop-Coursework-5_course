@@ -58,6 +58,22 @@ body {
                     font-size: 23px;
                 }
 
+                .sucsses {
+                    margin: 20px auto 0; 
+                    font-family: "PFDinTextCondPro";
+                    width: 350px;
+                    font-size: 18px;
+                    color: green;
+                }
+
+                .error {
+                    margin: 20px auto 0;
+                    font-family: "PFDinTextCondPro";
+                    width: 350px;
+                    font-size: 18px;
+                    color: red;
+                }
+
                 .input {
                     display: block;
                     margin-bottom: 3px;

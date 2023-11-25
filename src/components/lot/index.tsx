@@ -8,7 +8,7 @@ import StateInfo from "./stateInfo";
 
 import "./style.scss";
 
-export default function Lot({ id }: { id: number }) {
+export default function Lot({ id, type }: { id: number, type: string }) {
     let data = useAppSelector(selectLotsById(id));
 
     const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ export default function Lot({ id }: { id: number }) {
         axios.patch("http://localhost:3001/addViews", { id })
     }, []);
 
-    if (!data) return <main>Не знайдено такий лот</main>
+    if (!data) return <main>Не знайдено такий {type === "shop" ? "товар" :  "лот"}</main>
 
     function genereteListObj(obj: any) {
         const list:JSX.Element[] = [];
@@ -69,7 +69,7 @@ export default function Lot({ id }: { id: number }) {
                     <div className="desc" style={{display: "block"}}>
                         <span style={{marginLeft: 0}}>Опис:</span>{data.description || "Опис відсутній."}
                     </div>
-                    <button onClick={onRaise}><span>ПІДНЯТИ СТАВКУ</span></button>
+                    <button onClick={onRaise}><span>{type === "shop" ? "ПРИДБАТИ" : "ПІДНЯТИ СТАВКУ"}</span></button>
                 </div>
             </div>
             <div className="characteristics">

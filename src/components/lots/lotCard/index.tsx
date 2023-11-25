@@ -9,14 +9,15 @@ import Bid from "./bid";
 
 import "./style.scss";
 
-export default function LotCard({image, deadline, name, views, rate, bids, all}: {
+export default function LotCard({image, deadline, name, views, rate, bids, all, type}: {
     image: string,
     deadline: string,
     name: string,
     views: number,
     rate: number,
     bids: number,
-    all: IDataLots
+    all: IDataLots,
+    type: "lots" | "products"
 }) {
     const dispatch = useAppDispatch();
 
@@ -31,30 +32,35 @@ export default function LotCard({image, deadline, name, views, rate, bids, all}:
         <div className="lotCard">
             <div className="imageLot">
                <img src={image} alt="" />
-                <div className="timer">
-                    <img src="image/ico/sliderLot/hourglass.svg" alt="" />
-                    <Timer deadline={deadline}/>
-                </div>
+                <Timer deadline={deadline}/>
             </div>
             <div className="nameLot">
-                <p><Link to={`/lots/${all.id}`}>{name.length > 45 ? name.slice(0, 43) + '...': name}</Link></p>
+                <p><Link to={`single/${all.id}`}>{name.length > 45 ? name.slice(0, 43) + '...': name}</Link></p>
             </div>
-            <div className="dataLot">
-                <div className="views">
-                    <img src="image/ico/sliderLot/starvation.svg" alt="" />
-                    <p>{views}</p>
-                </div>
+            <div className="dataLot" style={{justifyContent: type === "lots" ? "space-between" : "center"}}>
+                {
+                    type === "lots" ? 
+                    <div className="views">
+                        <img src="image/ico/sliderLot/starvation.svg" alt="" />
+                        <p>{views}</p>
+                    </div>
+                    : null
+                }
                 <div className="rate">
-                    <p>Поточна ставка</p>
+                    <p>Поточна {type === "lots" ? "ставка" : "ціна"} </p>
                         <Bid rate={rate || all.market_price}/>
                     <p>₴</p>
                 </div>
-                <div className="bids">
-                    <img src="image/ico/sliderLot/rates.svg" alt="" />
-                    <p>{bids}</p>
-                </div>
+                {
+                    type === "lots" ? 
+                    <div className="bids">
+                        <img src="image/ico/sliderLot/rates.svg" alt="" />
+                        <p>{bids}</p>
+                    </div>
+                    : null
+                }
             </div>
-            <button onClick={onRaise}><span>ПІДНЯТИ СТАВКУ</span></button>
+            <button onClick={onRaise}><span>{type === "lots" ? "ПІДНЯТИ СТАВКУ" : "ПРИДБАТИ"}</span></button>
         </div>
     )
 }

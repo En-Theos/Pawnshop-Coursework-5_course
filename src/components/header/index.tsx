@@ -50,15 +50,11 @@ export default function Header() {
                         </div>
                     </div>
                     <div><Link to="auction">Аукціон</Link></div>
-                    <div><a href="#">Товари</a></div>
+                    <div><Link to="shop">Товари</Link></div>
                     <div><a href="#">Компанія</a></div>
                     <div><a href="#">Новини</a></div>
                 </nav>
                 <div className="actions">
-                    <div className="region">
-                        <img src="/image/ico/header/globe.svg" alt="Ups..."/>
-                        <a href="">Вибір мови</a>
-                    </div>
                     <div className="userMenu">
                         <img src="/image/ico/header/userMenu.png" alt="Ups..." className="userIco"/>
                         <div className="subMenu">
