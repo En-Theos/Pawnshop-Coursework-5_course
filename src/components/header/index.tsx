@@ -51,7 +51,7 @@ export default function Header() {
                     </div>
                     <div><Link to="auction">Аукціон</Link></div>
                     <div><Link to="shop">Товари</Link></div>
-                    <div><a href="#">Компанія</a></div>
+                    <div><Link to="company">Компанія</Link></div>
                     <div><a href="#">Новини</a></div>
                 </nav>
                 <div className="actions">

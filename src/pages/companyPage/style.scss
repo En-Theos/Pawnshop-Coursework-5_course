@@ -1,0 +1,184 @@
+@import "../../styles/fonts";
+
+.company {
+    padding: 50px 0 0 0;
+    position: relative;
+    .infoCompany {
+        .limit {
+            padding: 20px 15px;
+            padding-bottom: 280px;
+
+            h3 {
+                text-align: center;
+                font-family: "PT Sans", sans-serif;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 25px;
+                margin-bottom: 40px;
+                opacity: .7;
+            }
+
+            .flexBox {
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px 0;
+                margin: 0 auto;
+                max-width: 1200px;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 160px;
+                        margin-bottom: 10px;
+                    }
+
+                    .title {
+                        font-family: "PT Sans", sans-serif;
+                        font-size: 20px;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 2px;
+                        color: #bb9c66;
+                        margin-bottom: 20px;
+                    }
+
+                    .desc {
+                        width: 250px;
+                        text-align: center;
+                        font-family: "PT Sans", sans-serif;
+                        font-size: 16px;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }
+    .missionBlock {
+        max-width: 732px;
+        background-color: #fff;
+        box-shadow: 0 0 1px rgba(40, 47, 108, .2), 0 8px 16px rgba(40, 47, 108, .06);
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        padding: 80px 40px 40px;
+        transform: translateY(-70%);
+        h4 {
+            display: flex;
+            align-items: center;
+            font-family: "PT Sans", sans-serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+            font-weight: 600;
+            .line {
+                flex-grow: 1;
+                max-width: 80px;
+                height: 0.8px;
+                background-color: #bb9c66;
+                margin-right: 10px;
+                opacity: 1;
+            }
+        }
+        p {
+            font-family: $PTSans;
+            font-size: 45px;
+            text-align: center;
+            opacity: 0.5;
+            line-height: 60px;
+        }
+    }
+    .evaluationLink {
+        background-color: #1c242a;
+        .limit {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 15px;
+            padding-top: 200px;
+            h3 {
+                font-family: $PTSans;
+                color: white;
+                font-size: 23px;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+            .flexBox {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 20px;
+                .link {
+                    width: 320px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    flex-grow: 1;
+                    box-shadow: 0 0 3px rgba(87, 90, 111, 0.2), 0 3px 5px rgba(87, 90, 115, 0.06);
+                    padding: 30px 10px;
+                    cursor: pointer;
+                    transition: 0.3s all;
+                    img {
+                        margin-bottom: 10px;
+                    }
+                    p {
+                        font-family: $PTSans;
+                        color: white;
+                        font-size: 23px;
+                        text-align: center;
+                        margin-bottom: 15px;
+                        transition: 0.3s all;
+                    }
+                    &:hover {
+                        box-shadow: 0 0 5px rgba(95, 97, 111, 0.2), 0 18px 36px rgba(87, 89, 111, 0.06);
+                        p {
+                            color: #bb9c66;
+                        }
+                    }
+                }
+            }
+            .text {
+                font-family: "PT Sans", sans-serif;
+                color: white;
+                font-size: 18px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+    }
+    .benefits {
+        .limit {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 50px 15px;
+            .title {
+                font-family: "PT Sans", sans-serif;
+                font-size: 24px;
+                margin-bottom: 30px;
+                font-weight: 600;
+                color: #bb9c66;
+            }
+            .list {
+                .item {
+                    display: flex;
+                    align-items: flex-start;
+                    margin-bottom: 30px;
+                    img {
+                        margin-right: 10px;
+                    }
+                    font-family: "PT Sans", sans-serif;
+                    font-size: 20px;
+                    margin-bottom: 30px;
+                }
+            }
+            >p {
+                font-family: "PT Sans", sans-serif;
+                font-size: 20px;
+                margin-bottom: 20px;
+                line-height: 60px;
+            }
+        }
+    }
+}
