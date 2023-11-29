@@ -179,6 +179,27 @@ app.patch('/addOrder', async (req, res) => {
   }
 })
 
+app.post('/addLeaf', async (req, res) => {
+  try {
+    const name = req.body.name;
+    const email = req.body.email;
+    const phone = req.body.phone;
+    const message = req.body.message;
+   
+    const connection = await getConnection();
+
+    const [result] = await connection.query(`
+      INSERT INTO leaf (name, email, phone, message) 
+      VALUES (?, ?, ?, ?)`, [name, email, phone, message]
+    );
+
+    res.json({ success: true, message: 'Files uploaded successfully!' });
+  } catch (error) {
+    console.error('Error uploading files:', error);
+    res.status(500).json({ success: false, message: 'Error uploading files.' });
+  }
+})
+
 app.listen(port, () => {
   console.log(`Сервер запущено на порту ${port}`);
 });

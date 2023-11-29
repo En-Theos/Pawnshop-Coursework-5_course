@@ -52,12 +52,15 @@ export default function Header() {
                     <div><Link to="auction">Аукціон</Link></div>
                     <div><Link to="shop">Товари</Link></div>
                     <div><Link to="company">Компанія</Link></div>
-                    <div><a href="#">Новини</a></div>
+                    <div><Link to="contacts">Контакти</Link></div>
                 </nav>
                 <div className="actions">
                     <div className="userMenu">
-                        <img src="/image/ico/header/userMenu.png" alt="Ups..." className="userIco"/>
-                        <div className="subMenu">
+                        <div className="login">
+                            <img src="/image/ico/header/userMenu.png" alt="Ups..." className="userIco"/>
+                            <p >Вхід/Реєстрація</p>
+                        </div>
+                        <div className="subMenu" style={{display:"none"}}>
                             <p className="account">Акаунт</p>
                             <div>
                                 <div>

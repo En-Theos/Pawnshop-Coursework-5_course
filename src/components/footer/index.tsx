@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./style.scss";
 
 export default function Footer() {
@@ -9,20 +11,41 @@ export default function Footer() {
                 </div>
                 <div className="content">
                     <div className="logo">
-                        <img src="image/webp/logo.png" alt="" />
+                        <img src="/image/webp/logo.png" alt="" />
                         <p>Всі права захищені © 2014</p>
                     </div>
                     <div className="linkFooter">
-                        <div><a href="#">Головна</a></div>
-                        <div><a href="#">Оцінка предметів</a></div>
-                        <div><a href="#">Аукціон</a></div>
-                        <div><a href="#">Товари</a></div>
-                        <div><a href="#">Компанія</a></div>
-                        <div><a href="#">Новини</a></div>
+                    <div><Link to="/">Головна</Link></div>
+                    <div>
+                        <p>Оцінка</p>
+                        <div className="perspectiv">
+                            <div className="subMenu">
+                                <div>
+                                    <Link to="evaluation/gold">Золота</Link>
+                                </div>
+                                <div>
+                                    <Link to="evaluation/silver">Срібла</Link>
+                                </div>
+                                <div>
+                                    <Link to="evaluation/technique">Техніки</Link>
+                                </div>
+                                <div>
+                                    <Link to="evaluation/wristwatch">Наручних годинників</Link>
+                                </div>
+                                <div>
+                                    <Link to="evaluation/antiques">Предметів мистецтва</Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div><Link to="auction">Аукціон</Link></div>
+                    <div><Link to="shop">Товари</Link></div>
+                    <div><Link to="company">Компанія</Link></div>
+                    <div><Link to="contacts">Контакти</Link></div>
                     </div>
                     <div className="phone">
                         <p><span>+38 </span> (096) 22-22-22</p>
-                        <p><img src="image/webp/phone.svg" alt="" /><a href="#">Зворотній зв'язок</a></p>
+                        <p><img src="/image/webp/phone.svg" alt="" /><a href="#">Зворотній зв'язок</a></p>
                     </div>
                 </div>
             </div>

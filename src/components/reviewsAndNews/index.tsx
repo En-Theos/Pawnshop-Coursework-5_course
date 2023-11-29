@@ -9,17 +9,17 @@ export default function ReviewsAndNews() {
                         <p className="title"><img src="image/webp/quotes/news_ico.svg" alt="" />Новини</p>
                         <div className="new">
                             <time>18.07.2023</time>
-                            <a href="" className="name">Ми відкрили нове відділення</a>
+                            <p className="name">Ми відкрили нове відділення</p>
                             <p className="text">Нове відділення у місті Івано-Франківськ вулиця Володимира Великого 4. Це ювілейне 100 відділення по всій Україні.</p>
                         </div>
                         <div className="new">
                             <time>20.07.2023</time>
-                            <a href="" className="name">Є відкриті вакансії</a>
+                            <p className="name">Є відкриті вакансії</p>
                             <p className="text">Шукаємо працівників з досвідом і без у наші відділення в деяких містах України.</p>
                         </div>
                         <div className="new">
                             <time>11.08.2023</time>
-                            <a href="" className="name">Мобільний додаток</a>
+                            <p className="name">Мобільний додаток</p>
                             <p className="text">У нас з'явився мобільний додаток. Тепер кожен із наших клієнтів матиме зручний та швидкий доступ до всіх наших послуг.</p>
                         </div>
                     </div>

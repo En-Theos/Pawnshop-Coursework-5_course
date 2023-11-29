@@ -39,14 +39,14 @@ footer {
                 flex-wrap: wrap;
                 max-width: 550px;
 
-                div {
+                >div {
                     margin-right: 15px;
-
+text-align: center;
                     &:last-child {
                         margin-right: 0;
                     }
 
-                    a {
+                    p, a {
                         color: #ffffff;
                         font-family: $PFDinTextCondPro;
                         font-size: 14px;
@@ -54,7 +54,10 @@ footer {
                         line-height: 25px;
                         text-transform: uppercase;
                         letter-spacing: 1.4px;
-
+                        transition: color .3s linear;
+                        &:hover {
+                            color: #bb9c66;
+                        }
                     }
                 }
             }

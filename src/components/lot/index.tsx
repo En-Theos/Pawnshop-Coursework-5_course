@@ -55,7 +55,7 @@ export default function Lot({ id, type }: { id: number, type: string }) {
     }
 
     return (
-        <div className="singleLot">
+        <section className="singleLot">
             <div className="flexBox">
                 <img src={data.picture} alt="" />
                 <div className="info">
@@ -78,6 +78,6 @@ export default function Lot({ id, type }: { id: number, type: string }) {
                     {data.characteristics ? genereteListObj( data.characteristics ) : <div className="none">Немає характеристик</div> }
                 </div>
             </div>
-        </div>
+        </section>
     )
 }

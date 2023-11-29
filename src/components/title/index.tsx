@@ -4,7 +4,7 @@ import "./style.scss";
 
 export default function Title({minorTitle, mainTitle}: ITitleProps) {
     return (
-        <article className="title">
+        <div className="title">
             <div className="limit">
                 <h3 style={{color: minorTitle.color, fontSize: minorTitle.size}}>{minorTitle.text}</h3>
                 <div className="decor">
@@ -25,6 +25,6 @@ export default function Title({minorTitle, mainTitle}: ITitleProps) {
                     </div>
                 </div>
             </div>
-        </article>
+        </div>
     )
 }

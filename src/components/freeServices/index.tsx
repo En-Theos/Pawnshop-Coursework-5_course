@@ -12,7 +12,7 @@ export default function FreeServices() {
                     <p className="description">
                         Будь-яка оцінка ваших речей здійснюється безкоштовно.
                     </p>
-                    <button><a href="#">Детальніше</a></button>
+                    <div className="line"></div>
                 </div>
                 <div className="cardService">
                     <div className="img">
@@ -22,7 +22,7 @@ export default function FreeServices() {
                     <p className="description">
                         Виставляючи свою річ на аукціон, ми безкоштовно здійснюємо ремонт незначних несправностей у техніці чи інших предметах з механічними частинами.
                     </p>
-                    <button><a href="#">Детальніше</a></button>
+                    <div className="line"></div>
                 </div>
                 <div className="cardService">
                     <div className="img">
@@ -32,7 +32,7 @@ export default function FreeServices() {
                     <p className="description">
                         Виставляючи свої речі на аукціон, ми забезпечуємо безкоштовну реставрацію незначних дефектів на предметах мистецтва.
                     </p>
-                    <button><a href="#">Детальніше</a></button>
+                    <div className="line"></div>
                 </div>
             </div>
         </article>

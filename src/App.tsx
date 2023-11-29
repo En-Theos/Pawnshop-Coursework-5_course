@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import {MainPage, GoldPage, SilverPage, TechniquePage, WristwatchPage, AntiquesPage, AuctionPage, LotPage, ShopPage, CompanyPage} from "./pages"
+import {MainPage, GoldPage, SilverPage, TechniquePage, WristwatchPage, AntiquesPage, AuctionPage, LotPage, ShopPage, CompanyPage, ContactsPage} from "./pages"
 
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -24,6 +24,7 @@ function App() {
           <Route path="/single/:id" element={<LotPage/>}/>
           <Route path="/shop" element={<ShopPage/>}/>
           <Route path="/company" element={<CompanyPage/>}/>
+          <Route path="/contacts" element={<ContactsPage/>}/>
         </Routes>
         <Footer />
         <Modal />

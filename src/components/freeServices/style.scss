@@ -39,37 +39,19 @@
                 line-height: 25px;
                 margin-bottom: 35px;
             }   
-            button {
-                cursor: default;
+            .line {
+                width: 100%;
                 position: relative;
-                background-color: unset;
-                a {
-                    color: #ffffff;
-                    font-family: $PFDinTextCondPro;
-                    font-size: 21px;
-                    font-weight: 500;
-                    text-transform: uppercase;
-                    letter-spacing: 2.12px;
-                }
-                &::after {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    left: -70px;
-                    margin: auto 0;
-                    width: 50px;
-                    height: 1px;
-                    background-color: #bb9c66;
-                }
+                
                 &::before {
                     content: "";
                     position: absolute;
                     top: 0;
                     bottom: 0;
-                    right: -70px;
-                    margin: auto 0;
-                    width: 50px;
+                    right: 0;
+                    left: 0;
+                    margin: 0 auto;
+                    width: 150px;
                     height: 1px;
                     background-color: #bb9c66;
                 }

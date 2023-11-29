@@ -38,7 +38,7 @@ export default function Modal() {
             }}
             validationSchema={Yup.object({
                 name: Yup.string().required("Це поле обов'язкове"),
-                email: Yup.string().email("Не правильний формат email"),
+                email: Yup.string().required("Це поле обов'язкове").email("Не правильний формат email"),
                 rate: Yup.number().min((data.rate || data.market_price) + 1, `Ви повинні ввести суму більшу за теперішню: ${data.rate || data.market_price}`)
             })}
             onSubmit={({ name, email, rate }, { resetForm }) => {
