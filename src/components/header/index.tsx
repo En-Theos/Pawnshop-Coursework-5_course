@@ -54,7 +54,7 @@ export default function Header() {
                     <div><Link to="company">Компанія</Link></div>
                     <div><Link to="contacts">Контакти</Link></div>
                 </nav>
-                <div className="actions">
+                <div className="actions" style={{visibility: "hidden"}}>
                     <div className="userMenu">
                         <div className="login">
                             <img src="/image/ico/header/userMenu.png" alt="Ups..." className="userIco"/>

@@ -98,7 +98,6 @@ export default function EvaluationMetal({type}: {type: "gold" | "silver"}) {
     // Функція для події нажимання на кнопку розрахунку калькулятора
     function onSubmit() {
         if (mainData && condition && refResultDiv.current) {
-            // Різні операції розрахунку для різних типів предмету
             let result = Math.floor(prices.sample * prices.weight * prices.condition);
 
             // Виведення результату розрахунків на сторінку

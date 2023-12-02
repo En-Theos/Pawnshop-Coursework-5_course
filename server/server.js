@@ -94,7 +94,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Обробник маршруту для завантаження файлів
+// Обробник маршруту для форми заявки на оцінку яка приймає файли
 app.post('/upload', upload.array('images', 2), async (req, res) => {
   try {
     const requestNumber = Date.now();
@@ -110,8 +110,12 @@ app.post('/upload', upload.array('images', 2), async (req, res) => {
     // Обробка кожного завантаженого файлу
     files.forEach(async (file) => {
       const { filename, path } = file;
-      // Зберігаємо інформацію про файл в базу даних
-      const [result] = await connection.query('INSERT INTO requests_for_evaluation (requestNumber, fullName, phone, nameProduct, state, filename, path, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [requestNumber, fullName, phone, nameProduct, state, filename, path, type]);
+      
+      const [result] = await connection.query(`
+      INSERT INTO requests_for_evaluation 
+      (requestNumber, fullName, phone, nameProduct, state, filename, path, type) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, 
+      [requestNumber, fullName, phone, nameProduct, state, filename, path, type]);
     });
 
     res.json({ success: true, message: 'Files uploaded successfully!' });
