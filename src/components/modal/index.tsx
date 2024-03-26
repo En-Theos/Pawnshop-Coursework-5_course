@@ -77,7 +77,7 @@ export default function Modal() {
                         });
                     }
                 } else {
-                    axios.patch("http://localhost:3001/addOrder", { id: data.id }).then(() => {
+                    axios.post("http://localhost:3001/addOrder", { id: data.id, name_customer: name, email, name_product: data.name }).then(() => {
                         resetForm();
                         setIsSucsses("sucsses");
                     }).catch(() => {
