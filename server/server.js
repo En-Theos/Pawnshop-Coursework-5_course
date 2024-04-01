@@ -4,13 +4,11 @@ const multer = require('multer');
 const path = require('path');
 const cookieParser = require("cookie-parser");
 const router = require("./user");
+const errorMiddleware = require('./middleware/error.middleware')
 
 const app = express();
 const port = 3001;
 
-app.use(express.json());
-app.use(cookieParser());
-app.use("/user", router);
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // Конкретний домен
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
@@ -18,6 +16,10 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', true);
   next();
 });
+app.use(express.json());
+app.use(cookieParser());
+app.use("/user", router);
+app.use(errorMiddleware);
 
 app.get('/metal_prices', async (req, res) => {
   reqBody(res, 'SELECT * FROM metal_prices')
@@ -106,7 +108,6 @@ app.post('/upload', upload.array('images', 2), async (req, res) => {
     const nameProduct = req.body.nameProduct;
     const type = req.body.type;
     const email = req.body.email;
-    const phone = parseInt(req.body.phone);
     const state = req.body.state;
 
     const connection = await getConnection();
@@ -120,9 +121,9 @@ app.post('/upload', upload.array('images', 2), async (req, res) => {
 
     const [result] = await connection.query(`
     INSERT INTO requests_for_evaluation 
-    (fullName, phone, email, nameProduct, state, path, type) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [fullName, phone, email, nameProduct, state, path.join(","), type]
+    (fullName, email, nameProduct, state, path, type) 
+    VALUES (?, ?, ?, ?, ?, ?)`,
+      [fullName, email, nameProduct, state, pathFiles.join(","), type]
     );
 
     res.json({ success: true, message: 'Files uploaded successfully!' });
@@ -227,7 +228,6 @@ async function reqBody(res, SQLreq) {
   try {
     const connection = await getConnection();
     const [rows, fields] = await connection.execute(SQLreq);
-    console.log(rows)
 
     res.json(rows);
   } catch (error) {

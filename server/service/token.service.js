@@ -12,16 +12,57 @@ class TokenService {
         }
     }
 
-    async saveToken(userId, refreshToken) {
+    validateAccessToken(token) {
+        try {
+            return jwt.verify(token, "jwt_access_secret_key")
+        } catch (err) {
+            return null
+        }
+    }
+
+    validateRefreshToken(token) {
+        try {
+            return jwt.verify(token, "jwt_refresh_secret_key")
+        } catch (err) {
+            return null
+        } 
+    }
+
+    async saveToken(userEmail, refreshToken) {
         const connection = await getConnection();
 
         const [result] = await connection.query(`
             UPDATE users
             SET refresh_token = ?
-            WHERE id = ?`, [refreshToken, userId]
+            WHERE email = ?`, [refreshToken, userEmail]
         );
 
         return result
+    }
+
+    async removeToken(refreshToken) {
+        const connection = await getConnection();
+
+        const [result] = await connection.query(`
+            UPDATE users
+            SET refresh_token = NULL
+            WHERE refresh_token = ?`, [refreshToken]
+        );
+    }
+
+    async findToken(refreshToken) {
+        const connection = await getConnection();
+
+        const [rows] = await connection.execute(`
+            SELECT * FROM users
+            WHERE refresh_token = ?`, [refreshToken]
+        );
+
+        if (rows.length !== 0) {
+            return rows
+        } else {
+            return null
+        }
     }
 }
 

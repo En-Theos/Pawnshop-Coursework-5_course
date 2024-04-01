@@ -21,7 +21,7 @@ export default function EvaluationAntiques() {
         initialValues: {
             nameProduct: '',
             fullName: '',
-            phone: '',
+            email: '',
             front: null,
             back: null,
             condition: ''
@@ -81,7 +81,7 @@ export default function EvaluationAntiques() {
             }
 
             formData.append('fullName', form.values.fullName);
-            formData.append('phone', form.values.phone + '');
+            formData.append('email', form.values.email);
             formData.append('nameProduct', form.values.nameProduct);
             formData.append('type', 'Антикваріат');
             formData.append('state', form.values.condition);
@@ -156,7 +156,7 @@ export default function EvaluationAntiques() {
                     <h3 style={{marginBottom: "25px"}} className='titleWristwatch'>Заявка на оцінку антикваріату</h3>
                     <Basic name='fullName' label='ПІБ' placeholder="Прізвище, ім'я, по батькові" value={form.values.fullName} form={form} refResultDiv={refResultDiv}/>
                     <Basic name='nameProduct' label='Назва годинника' placeholder='Виробник, модель годинника' value={form.values.nameProduct} form={form} refResultDiv={refResultDiv}/>
-                    <Basic name='phone' label='Ваш номер телефону' placeholder='+380' number={true} value={form.values.phone+''} form={form} refResultDiv={refResultDiv}/>
+                    <Basic name='email' label='Електрона пошта' placeholder="example@gmail.com" value={form.values.email} form={form} refResultDiv={refResultDiv}/>
                     <div className='option'>
                         <label >Завантажте фото</label>
                     </div> 
