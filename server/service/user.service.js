@@ -6,7 +6,7 @@ const ApiError = require('../api-error');
 const bcrypt = require('bcrypt')
 
 class UserService {
-    async registration(email, password) {
+    async registration(name, email, password) {
         const connection = await getConnection();
 
         const [rows, fields] = await connection.execute(`
@@ -19,11 +19,11 @@ class UserService {
         }
 
         const hashPassword = await bcrypt.hash(password, 3);
-        const activationLink = uuid.v4()
+        const activationLink = uuid.v4();
 
         const [result] = await connection.query(`
-            INSERT INTO users (email, password, activationLink)
-            VALUES (?, ?, ?)`, [email, hashPassword, activationLink]
+            INSERT INTO users (name, email, password, activationLink)
+            VALUES (?, ?, ?, ?)`, [name, email, hashPassword, activationLink ]
         );
 
         await mailService.sendActivationMail(email, "http://localhost:3001/user/activate/" + activationLink);
@@ -34,14 +34,16 @@ class UserService {
         `);
 
         const tokens = tokenService.generateToken({
-            id: user[0].id, 
+            id: user[0].id,
+            name: user[0].name,
             email: user[0].email, 
             isActivated: user[0].isActivated
         });
-        await tokenService.saveToken(user[0].id, tokens.refreshToken);
+        await tokenService.saveToken(user[0].email, tokens.refreshToken);
 
         return {...tokens, user: {
             id: user[0].id, 
+            name: user[0].name,
             email: user[0].email, 
             isActivated: user[0].isActivated
         }}
@@ -50,12 +52,12 @@ class UserService {
     async activate(activationLink) {
         const connection = await getConnection();
 
-        const [rows] = await connection.execute(`
+        const [user] = await connection.execute(`
             SELECT * FROM users
             WHERE activationLink = "${activationLink}"
         `);
 
-        if (rows.length === 0) {
+        if (user.length === 0) {
             throw ApiError.BadRequest("Недійсне посилання для активації")
         }
 
@@ -66,53 +68,53 @@ class UserService {
         );
 
         const tokens = tokenService.generateToken({
-            id: rows[0].id,
-            email: rows[0].email,
-            isActivated: rows[0].isActivated
+            id: user[0].id,
+            name: user[0].name,
+            email: user[0].email, 
+            isActivated: user[0].isActivated
         });
-        await tokenService.saveToken(rows[0].email, tokens.refreshToken);
+        await tokenService.saveToken(user[0].email, tokens.refreshToken);
 
-        return {
-            ...tokens, user: {
-                id: rows[0].id,
-                email: rows[0].email,
-                isActivated: rows[0].isActivated
-            }
-        }
+        return {...tokens, user: {
+            id: user[0].id, 
+            name: user[0].name,
+            email: user[0].email, 
+            isActivated: user[0].isActivated
+        }}
     }
 
     async login(email, password) {
         const connection = await getConnection();
 
-        const [rows, fields] = await connection.execute(`
+        const [user] = await connection.execute(`
             SELECT * FROM users
             WHERE email = "${email}"
         `);
 
-        if (rows.length === 0) {
+        if (user.length === 0) {
             throw ApiError.BadRequest("Користувача з таким email не знайдено");
         }
 
-        const isPassEquals = await bcrypt.compare(password, rows[0].password);
+        const isPassEquals = await bcrypt.compare(password, user[0].password);
 
         if (!isPassEquals) {
             throw ApiError.BadRequest("Невірний пароль");
         }
 
         const tokens = tokenService.generateToken({
-            id: rows[0].id,
-            email: rows[0].email,
-            isActivated: rows[0].isActivated
+            id: user[0].id,
+            name: user[0].name,
+            email: user[0].email, 
+            isActivated: user[0].isActivated
         });
-        await tokenService.saveToken(rows[0].email, tokens.refreshToken);
+        await tokenService.saveToken(user[0].email, tokens.refreshToken);
 
-        return {
-            ...tokens, user: {
-                id: rows[0].id,
-                email: rows[0].email,
-                isActivated: rows[0].isActivated
-            }
-        }
+        return {...tokens, user: {
+            id: user[0].id, 
+            name: user[0].name,
+            email: user[0].email, 
+            isActivated: user[0].isActivated
+        }}
     }
 
     async logout(refreshToken) {
@@ -139,6 +141,7 @@ class UserService {
 
         const tokens = tokenService.generateToken({
             id: rows[0].id,
+            name: rows[0].name,
             email: rows[0].email,
             isActivated: rows[0].isActivated
         });
@@ -147,6 +150,7 @@ class UserService {
         return {
             ...tokens, user: {
                 id: rows[0].id,
+                name: rows[0].name,
                 email: rows[0].email,
                 isActivated: rows[0].isActivated
             }
@@ -161,8 +165,7 @@ class UserService {
                 bids.rate,
                 goods_for_sale.name,
                 goods_for_sale.market_price,
-                goods_for_sale.picture,
-                goods_for_sale.description
+                goods_for_sale.picture
             FROM
                 bids
             JOIN

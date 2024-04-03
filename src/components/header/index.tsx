@@ -1,11 +1,33 @@
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./style.scss"
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import axios from "axios";
+import { clearData } from "../../slices/user";
 
 export default function Header() {
+    const userName = useAppSelector(state => state.user.name);
+
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
+    function logout() {
+        axios.post("http://localhost:3001/user/logout", {}, {
+            withCredentials: true
+        })
+            .then((response) => {
+                window.localStorage.clear()
+                dispatch(clearData())
+                navigate("/login");
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
         <header>
-             <div className="limit">
+            <div className="limit">
                 <div className="burger">
                     <div className="btn">
                         <div className="line"></div>
@@ -22,7 +44,7 @@ export default function Header() {
                     </div>
                 </div>
                 <div className="logo">
-                    <img src="/image/webp/logo.png" alt="Ups..."/>
+                    <img src="/image/webp/logo.png" alt="Ups..." />
                 </div>
                 <nav>
                     <div><Link to="/">Головна</Link></div>
@@ -54,31 +76,28 @@ export default function Header() {
                     <div><Link to="company">Компанія</Link></div>
                     <div><Link to="contacts">Контакти</Link></div>
                 </nav>
-                <div className="actions" style={{visibility: "hidden"}}>
+                <div className="actions">
                     <div className="userMenu">
                         <div className="login">
-                            <img src="/image/ico/header/userMenu.png" alt="Ups..." className="userIco"/>
-                            <p >Вхід/Реєстрація</p>
+                            <img src="/image/ico/header/userMenu.png" alt="Ups..." className="userIco" />
+                            {
+                                userName
+                                    ? <><p>{userName}</p><span>/</span> <p className="link" onClick={logout}>Вийти</p></>
+                                    : <><Link to="login">Вхід</Link> <span>/</span> <Link to="register">Реєстрація</Link></>
+                            }
                         </div>
-                        <div className="subMenu" style={{display:"none"}}>
-                            <p className="account">Акаунт</p>
+                        <div className="subMenu">
                             <div>
                                 <div>
-                                    <img src="/image/ico/header/subMenu/key.svg" alt=""/>
+                                    <img src="/image/ico/header/subMenu/key.svg" alt="" />
                                 </div>
-                                <a href="">Особистий кабінет</a>
+                                <Link to="user">Особистий кабінет</Link>
                             </div>
                             <div>
                                 <div>
-                                    <img src="/image/ico/header/subMenu/palm.svg" alt=""/>
+                                    <img src="/image/ico/header/subMenu/hammer.svg" alt="" />
                                 </div>
-                                <a href="">Мої ставки</a>
-                            </div>
-                            <div>
-                                <div>
-                                    <img src="/image/ico/header/subMenu/hammer.svg" alt=""/>
-                                </div>
-                                <a href="">Мої лоти</a>
+                                <Link to="auction">Контракти</Link>
                             </div>
                         </div>
                     </div>

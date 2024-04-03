@@ -18,6 +18,10 @@ module.exports = function (req, res, next) {
             return next(ApiError.UnauthorizedError());
         }
 
+        if (!userData.isActivated) {
+            return next(ApiError.MailIsNotActivated());
+        }
+
         req.body = userData;
         next();
     } catch (err) {

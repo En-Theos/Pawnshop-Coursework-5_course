@@ -15,4 +15,8 @@ module.exports = class ApiError extends Error {
     static BadRequest(message, errors = []) {
         return new ApiError(400, message, errors)
     }
+
+    static MailIsNotActivated() {
+        return new ApiError(400, "Пошта не активована")
+    }
 }

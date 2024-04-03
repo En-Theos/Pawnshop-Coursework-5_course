@@ -2,23 +2,23 @@ const express = require('express');
 const getConnection = require('./database'); // Імпортуємо функцію для отримання з'єднання
 const multer = require('multer');
 const path = require('path');
+const cors = require('cors')
 const cookieParser = require("cookie-parser");
 const router = require("./user");
-const errorMiddleware = require('./middleware/error.middleware')
+const errorMiddleware = require('./middleware/error.middleware');
 
 const app = express();
 const port = 3001;
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // Конкретний домен
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', true);
-  next();
-});
+app.use(cors({
+  credentials: true,
+  origin: "http://localhost:3000",
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
+}))
 app.use(express.json());
 app.use(cookieParser());
 app.use("/user", router);
+app.use(express.static(path.join(__dirname, 'uploads')));
 app.use(errorMiddleware);
 
 app.get('/metal_prices', async (req, res) => {
@@ -141,9 +141,15 @@ app.post('/upAnte', async (req, res) => {
     const email = req.body.email;
     const connection = await getConnection();
 
-    const [result] = await connection.query(`
+    await connection.query(`
       INSERT INTO bids (id_goods, rate, name, email) 
       VALUES (?, ?, ?, ?)`, [id, rate, name, email]
+    );
+
+    await connection.query(`
+      UPDATE goods_for_sale
+      SET market_price = ${rate}
+      WHERE id = ${id}`
     );
 
     res.json({ success: true, message: 'Files uploaded successfully!' });

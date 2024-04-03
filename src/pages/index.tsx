@@ -7,7 +7,10 @@ import AntiquesPage from "./antiquesPage";
 import AuctionPage from "./auctionPage";
 import LotPage from "./lotPage";
 import ShopPage from "./shopPage";
-import CompanyPage from "./companyPage"
+import CompanyPage from "./companyPage";
 import ContactsPage from "./contactsPage";
+import RegisterPage from "./registerPage";
+import LoginPage from "./loginPage";
+import UserPage from "./userPage";
 
-export {MainPage, GoldPage, SilverPage, TechniquePage, WristwatchPage, AntiquesPage, AuctionPage, LotPage, ShopPage, CompanyPage, ContactsPage};
+export {UserPage, RegisterPage, LoginPage, MainPage, GoldPage, SilverPage, TechniquePage, WristwatchPage, AntiquesPage, AuctionPage, LotPage, ShopPage, CompanyPage, ContactsPage};

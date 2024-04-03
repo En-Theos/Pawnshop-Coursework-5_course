@@ -1,0 +1,68 @@
+@import "../../styles/fonts";
+
+p {
+    font-family: "PFDinTextCondPro";
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.field {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    
+    input, button, textarea {
+        width: 100%;
+        margin: 0 auto;
+        border: 3px solid #bb9c66;
+        padding: 5px;
+        border-image: linear-gradient(to top, #8d652e 0%, #c3a775 100%);
+        border-image-slice: 1;
+        background-color: unset;
+        color: #000000;
+        font-family: "PFDinTextCondPro";
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    textarea {
+        height: 120px;
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    button {
+        width: 210px;
+        height: 60px;
+        font-size: 23px;
+    }
+
+    .sucsses {
+        margin: 20px auto 0; 
+        font-family: "PFDinTextCondPro";
+        width: 350px;
+        font-size: 20px;
+        color: green;
+    }
+
+    .error {
+        margin: 20px auto 0;
+        font-family: "PFDinTextCondPro";
+        width: 350px;
+        font-size: 20px;
+        color: red;
+    }
+
+    .input {
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .errorMessage {
+        display: block;
+        font-family: "PFDinTextCondPro";
+        color: red;
+        font-size: 16px;
+    }
+}
