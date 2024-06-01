@@ -55,7 +55,7 @@ export default function ContactsPage() {
                             message: Yup.string().required("Це поле обов'язкове")
                         })}
                         onSubmit={({ name, email, phone, message }, { resetForm }) => {
-                            axios.post("http://localhost:3001/addLeaf", { name, email, phone, message }).then(() => {
+                            axios.post("http://localhost:3001/leaf", { name, email, phone, message }).then(() => {
                                 setIsSucsses("sucsses");
                                 resetForm();
                             }).catch(() => {

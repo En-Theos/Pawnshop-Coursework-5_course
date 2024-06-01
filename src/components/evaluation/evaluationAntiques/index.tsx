@@ -79,14 +79,14 @@ export default function EvaluationAntiques() {
                     }
                 });
             }
-
+            
             formData.append('fullName', form.values.fullName);
             formData.append('email', form.values.email);
             formData.append('nameProduct', form.values.nameProduct);
             formData.append('type', 'Антикваріат');
             formData.append('state', form.values.condition);
 
-            fetch("http://localhost:3001/upload", {
+            fetch("http://localhost:3001/evaluation/request", {
                 method: "POST",
                 body: formData
             }).then((data)=> {

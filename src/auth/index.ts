@@ -22,8 +22,8 @@ axiosAuth.interceptors.response.use(
             originalRequest._isRetry = true;
 
             try {
-                const response = await axios.get('http://localhost:3001/user/refresh', {withCredentials: true});
-                window.localStorage.setItem("token", "Beaer " + response.data.accessToken);
+                const response = await axios.get('http://localhost:3001/auth/refresh', {withCredentials: true});
+                window.localStorage.setItem("token", "Bearer " + response.data.accessToken);
                 return axiosAuth.request(originalRequest);
             } catch (e) {
                 return Promise.reject("logaut");

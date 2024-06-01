@@ -27,7 +27,7 @@ export default function Modal() {
             document.body.style.overflow = "auto";
             dispatch(hideModal());
         }
-    }}>Не знайдено такий {location === "shop" ? "товар" :  "лот"}</div>
+    }}>Не знайдено такий {location === "shop" ? "товар" : "лот"}</div>
 
     return (
         <Formik
@@ -45,14 +45,14 @@ export default function Modal() {
                 if (location !== "shop") {
                     if (ifViews) {
                         Promise.all([
-                            axios.patch("http://localhost:3001/addViews", { id: data.id }),
-                            axios.post("http://localhost:3001/upAnte", { id: data.id, name, email, rate })
+                            axios.patch(`http://localhost:3001/lots/add-view/${data.id}`),
+                            axios.patch("http://localhost:3001/lots/up-rate", { goodsForSaleId: data.id, name, email, rate })
                         ]).then(() => {
                             dispatch(lotsUpdate({
                                 id: data.id,
                                 changes: {
                                     rate,
-                                    bids: data.bids + 1,
+                                    bids: (+data.bids) + 1,
                                     views: data.views + 1
                                 }
                             }));
@@ -62,7 +62,7 @@ export default function Modal() {
                             setIsSucsses("error");
                         });
                     } else {
-                        axios.post("http://localhost:3001/upAnte", { id: data.id, name, email, rate }).then(() => {
+                        axios.patch("http://localhost:3001/lots/up-rate", { goodsForSaleId: data.id, name, email, rate }).then(() => {
                             dispatch(lotsUpdate({
                                 id: data.id,
                                 changes: {
@@ -72,12 +72,12 @@ export default function Modal() {
                             }));
                             resetForm();
                             setIsSucsses("sucsses");
-                        }).catch(() => {
+                        }).catch(() => { 
                             setIsSucsses("error");
                         });
                     }
                 } else {
-                    axios.post("http://localhost:3001/addOrder", { id: data.id, name_customer: name, email, name_product: data.name }).then(() => {
+                    axios.post("http://localhost:3001/products/buy", { goodsForSaleId: data.id, name_customer: name, email, name_product: data.name }).then(() => {
                         resetForm();
                         setIsSucsses("sucsses");
                     }).catch(() => {
@@ -96,7 +96,7 @@ export default function Modal() {
                 }}>
                     <div className="content">
                         <Form>
-                            <p style={{ fontSize: "26px" }}>{location === "shop" ? "Товар" :  "Лот"}</p>
+                            <p style={{ fontSize: "26px" }}>{location === "shop" ? "Товар" : "Лот"}</p>
                             <p className="name">{data.name}</p>
                             <div className='field'>
                                 <p>Прізвище, ім'я</p>
@@ -117,28 +117,28 @@ export default function Modal() {
                                 }} />
                             </div>
                             {
-                                location !== "shop" ? 
-                                <div className='field'>
-                                    <p>На скільки підняти ставку?</p>
-                                    <Field className='input' type="number" name="rate" />
-                                    <ErrorMessage name={'rate'} render={(message) => {
-                                        return (
-                                            <p className='errorMessage'>{message}</p>
-                                        )
-                                    }} />
-                                </div> : null
+                                location !== "shop" ?
+                                    <div className='field'>
+                                        <p>На скільки підняти ставку?</p>
+                                        <Field className='input' type="number" name="rate" />
+                                        <ErrorMessage name={'rate'} render={(message) => {
+                                            return (
+                                                <p className='errorMessage'>{message}</p>
+                                            )
+                                        }} />
+                                    </div> : null
                             }
                             <div className='field'>
-                                <button type='submit'>{location === "shop" ? "Придбати" :  "Підняти"} </button>
+                                <button type='submit'>{location === "shop" ? "Придбати" : "Підняти"} </button>
                                 {
-                                    isSucsses === "sucsses" 
-                                    ? <div className='sucsses'>{location === "shop" 
-                                        ? "Незабаром з вами зв'яжеться наш консультант для з'ясування додаткової інформації." 
-                                        : "У разі якщо ваша ставка буде найбільшою з вами звяжеться наш працівник для проведення всіх потрібних операцій."}</div>
-                                    : 
-                                    isSucsses === "error" 
-                                    ? <div className='error'>Не вдалося відправити форму, спробуйте пізніше</div>
-                                    : null
+                                    isSucsses === "sucsses"
+                                        ? <div className='sucsses'>{location === "shop"
+                                            ? "Незабаром з вами зв'яжеться наш консультант для з'ясування додаткової інформації."
+                                            : "У разі якщо ваша ставка буде найбільшою з вами звяжеться наш працівник для проведення всіх потрібних операцій."}</div>
+                                        :
+                                        isSucsses === "error"
+                                            ? <div className='error'>Не вдалося відправити форму, спробуйте пізніше</div>
+                                            : null
                                 }
                             </div>
                         </Form>

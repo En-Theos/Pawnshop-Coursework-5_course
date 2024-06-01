@@ -52,7 +52,7 @@ export default function RegisterPage() {
                             ).required("Це поле обов'язкове")
                         })}
                         onSubmit={({name, email, password }, { resetForm }) => {
-                            axios.post("http://localhost:3001/user/registration", {
+                            axios.post("http://localhost:3001/auth/registration", {
                                 name,
                                 email,
                                 password

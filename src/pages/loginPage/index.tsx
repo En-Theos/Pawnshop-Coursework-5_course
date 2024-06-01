@@ -46,7 +46,7 @@ export default function LoginPage() {
                             password: Yup.string().required("Це поле обов'язкове")
                         })}
                         onSubmit={({ email, password }, { resetForm }) => {
-                            axios.post("http://localhost:3001/user/login", {
+                            axios.post("http://localhost:3001/auth/login", {
                                 email,
                                 password
                             }, {

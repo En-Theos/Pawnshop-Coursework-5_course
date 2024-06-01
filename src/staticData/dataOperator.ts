@@ -46,7 +46,7 @@ export default class DataOperator {
     private static presenceState?: ICondition[];
 
     static async getMetal(metal: 'Золото' | 'Срібло') {
-        await body("metal_prices", (data) => {
+        await body("prices/metal", (data) => {
             DataOperator.presenceMetal = data.filter(item => item.type.includes(metal));
         });
 
@@ -56,7 +56,7 @@ export default class DataOperator {
     static async getLaptop() {
         if (DataOperator.presenceLaptop) return DataOperator.presenceLaptop
 
-        await body("laptop_prices", (data) => {
+        await body("prices/laptop", (data) => {
             DataOperator.presenceLaptop = data;
         });
 
@@ -66,7 +66,7 @@ export default class DataOperator {
     static async getMonitor() {
         if (DataOperator.presenceMonitor) return DataOperator.presenceMonitor;
 
-        await body("monitor_prices", (data) => {
+        await body("prices/monitor", (data) => {
             DataOperator.presenceMonitor = data;
         });
 
@@ -76,7 +76,7 @@ export default class DataOperator {
     static async getPhone() {
         if (DataOperator.presencePhone) return DataOperator.presencePhone;
 
-        await body("phone_prices", (data) => {
+        await body("prices/phone", (data) => {
             DataOperator.presencePhone = data;
         });
 
@@ -86,7 +86,7 @@ export default class DataOperator {
     static async getPhotoCamera() {
         if (DataOperator.presencePhotoCamera) return DataOperator.presencePhotoCamera;
 
-        await body("photo_camera_prices", (data) => {
+        await body("prices/photo_camera", (data) => {
             DataOperator.presencePhotoCamera = data;
         });
 
@@ -96,7 +96,7 @@ export default class DataOperator {
     static async getTablets() {
         if (DataOperator.presenceTablet) return DataOperator.presenceTablet;
 
-        await body("tablets_prices", (data) => {
+        await body("prices/tablet", (data) => {
             DataOperator.presenceTablet = data;
         });
 
@@ -106,7 +106,7 @@ export default class DataOperator {
     static async getTv() {
         if (DataOperator.presenceTv) return DataOperator.presenceTv;
 
-        await body("tv_prices", (data) => {
+        await body("prices/tv", (data) => {
             DataOperator.presenceTv = data;
         });
 
@@ -116,7 +116,7 @@ export default class DataOperator {
     static async getVideoCamera() {
         if (DataOperator.presenceVideoCamera) return DataOperator.presenceVideoCamera;
 
-        await body("video_camera_prices", (data) => {
+        await body("prices/video_camera", (data) => {
             DataOperator.presenceVideoCamera = data;
         });
 
@@ -126,7 +126,7 @@ export default class DataOperator {
     static async getCondition() {
         if (DataOperator.presenceState) return DataOperator.presenceState;
 
-        await body("state", (data) => {
+        await body("evaluation/state", (data) => {
             DataOperator.presenceState = data;
         });
         

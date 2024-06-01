@@ -14,7 +14,9 @@ export default function Lot({ id, type }: { id: number, type: string }) {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        axios.patch("http://localhost:3001/addViews", { id })
+        if (type !== "shop") {
+            axios.patch(`http://localhost:3001/lots/add-view/${ id }`)
+        }
     }, []);
 
     if (!data) return <main>Не знайдено такий {type === "shop" ? "товар" :  "лот"}</main>

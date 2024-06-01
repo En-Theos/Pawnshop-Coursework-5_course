@@ -14,9 +14,9 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    axios.get("http://localhost:3001/user/refresh", {withCredentials: true})
+    axios.get("http://localhost:3001/auth/refresh", {withCredentials: true})
       .then((response) => {
-        window.localStorage.setItem("token", "Beaer " + response.data.accessToken)
+        window.localStorage.setItem("token", "Bearer " + response.data.accessToken)
         
         dispatch(setData(response.data.user))
       })

@@ -23,7 +23,7 @@ export default function EvaluationWristwatch() {
         initialValues: {
             nameProduct: '',
             fullName: '',
-            phone: '',
+            email: '',
             front: null,
             back: null,
             condition: ''
@@ -83,12 +83,12 @@ export default function EvaluationWristwatch() {
             }
 
             formData.append('fullName', form.values.fullName);
-            formData.append('phone', form.values.phone + '');
+            formData.append('email', form.values.email);
             formData.append('nameProduct', form.values.nameProduct);
             formData.append('type', 'Наручний годинник');
             formData.append('state', form.values.condition);
 
-            fetch("http://localhost:3001/upload", {
+            fetch("http://localhost:3001/evaluation/request", {
                 method: "POST",
                 body: formData
             }).then((data)=> {
@@ -172,7 +172,7 @@ export default function EvaluationWristwatch() {
                     </div>
                     <Basic name='fullName' label='ПІБ' placeholder="Прізвище, ім'я, по батькові" value={form.values.fullName} form={form} refResultDiv={refResultDiv}/>
                     <Basic name='nameProduct' label='Назва годинника' placeholder='Виробник, модель годинника' value={form.values.nameProduct} form={form} refResultDiv={refResultDiv}/>
-                    <Basic name='phone' label='Ваш номер телефону' placeholder='+380' number={true} value={form.values.phone+''} form={form} refResultDiv={refResultDiv}/>
+                    <Basic name='email' label='Електрона пошта' placeholder="example@gmail.com" value={form.values.email} form={form} refResultDiv={refResultDiv}/>
                     <div className='option'>
                         <label >Завантажте фото</label>
                     </div> 

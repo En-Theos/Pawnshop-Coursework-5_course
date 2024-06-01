@@ -13,21 +13,32 @@ import Lot from "../../components/lot";
 export default function LotPage() {
     const { id } = useParams();
     const location = useLocation().pathname.split("/")[1];
-    
+
     const lots = useAppSelector(selectLots);
     const lotsStatus = useAppSelector(state => state.lots.lotsStatus)
 
     const dispatch = useAppDispatch();
-
     useEffect(() => {
-        if (lots.length === 0) {
-            dispatch(lotsFetching());
-            axios.get(`http://localhost:3001/single?id=${id}`).then(({ data }) => {
-                dispatch(lotsFetched(data));
-            }).catch((error) => {
-                dispatch(lotsFetchingError());
-                throw error
-            })
+        if (location === "shop") {
+            if (lots.length === 0) {
+                dispatch(lotsFetching());
+                axios.get(`http://localhost:3001/products/${id}`).then(({ data }) => {
+                    dispatch(lotsFetched([data]));
+                }).catch((error) => {
+                    dispatch(lotsFetchingError());
+                    throw error
+                })
+            }
+        } else {
+            if (lots.length === 0) {
+                dispatch(lotsFetching());
+                axios.get(`http://localhost:3001/lots/${id}`).then(({ data }) => {
+                    dispatch(lotsFetched([data]));
+                }).catch((error) => {
+                    dispatch(lotsFetchingError());
+                    throw error
+                })
+            }
         }
     }, []);
 
@@ -35,8 +46,8 @@ export default function LotPage() {
         return (
             <main className="lotPage">
                 <div className="limit">
-                    <Title minorTitle={{ text: "" }} mainTitle={{ text: location === "shop" ? `Товар #${id}` : `Лот #${id}`}  } />
-                    <Lot id={parseInt(id || "-1")} type={location}/>
+                    <Title minorTitle={{ text: "" }} mainTitle={{ text: location === "shop" ? `Товар #${id}` : `Лот #${id}` }} />
+                    <Lot id={parseInt(id || "-1")} type={location} />
                 </div>
             </main>
         )

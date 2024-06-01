@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserPage() {
     const userName = useAppSelector(state => state.user.name);
+    const [email, setEmail] = useState<string>("");
 
     const [bidsData, setBidsData] = useState<{
         market_price: string,
@@ -32,13 +33,15 @@ export default function UserPage() {
 
     function fetchBids() {
         axiosAuth
-            .get("/userBids")
+            .get("/bids")
             .then((response) => {
                 setBidsData(response.data);
                 setOrdersData([]);
                 setEvaluationData([]);
+                setEmail("")
             })
             .catch((err) => {
+                setEmail(err.response.data.message)
                 if (err === "logaut") {
                     navigate("/login");
                 }
@@ -47,13 +50,16 @@ export default function UserPage() {
 
     function fetchOrders() {
         axiosAuth
-            .get("/userOrders")
+            .get("/orders")
             .then((response) => {
+
                 setOrdersData(response.data);
                 setBidsData([]);
                 setEvaluationData([]);
+                setEmail("")
             })
             .catch((err) => {
+                setEmail(err.response.data.message)
                 if (err === "logaut") {
                     navigate("/login");
                 }
@@ -62,13 +68,17 @@ export default function UserPage() {
 
     function fetchEvaluation() {
         axiosAuth
-            .get("/userEvaluation")
+            .get("/evaluation")
             .then((response) => {
+                console.log(response.data)
+
                 setEvaluationData(response.data);
                 setOrdersData([]);
                 setBidsData([]);
+                setEmail("")
             })
             .catch((err) => {
+                setEmail(err.response.data.message)
                 if (err === "logaut") {
                     navigate("/login");
                 }
@@ -96,6 +106,11 @@ export default function UserPage() {
                         fontWeight: !!evaluationData.length ? "700" : "400"
                     }}>Запити на оцінку</div>
                 </div>
+                {
+                    email
+                    ? 
+                    <p style={{textAlign: "center", margin: "10px"}}>{email}</p>
+                    :
                 <div className="content">
                     {
                         !!bidsData.length
@@ -162,10 +177,10 @@ export default function UserPage() {
                                                 <p>{item.nameProduct}</p>
                                             </div>
                                             <div>
-                                                <img src={"http://localhost:3001/" + item.path.split(",")[0].split("\\")[2]} alt={item.nameProduct} />
+                                                <img src={"http://localhost:3001/image/" + item.path.split(",")[0].split("\\")[1]} alt={item.nameProduct} />
                                             </div>
                                             <div>
-                                                <img src={"http://localhost:3001/" + item.path.split(",")[1].split("\\")[2]} alt={item.nameProduct} />
+                                                <img src={"http://localhost:3001/image/" + item.path.split(",")[1].split("\\")[1]} alt={item.nameProduct} />
                                             </div>
                                         </div>
                                     })
@@ -174,6 +189,7 @@ export default function UserPage() {
                             : null
                     }
                 </div>
+                }
             </div>
         </main>
     )
