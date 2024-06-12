@@ -12,7 +12,7 @@ export default function Header() {
     const navigate = useNavigate()
 
     function logout() {
-        axios.post("http://localhost:3001/user/logout", {}, {
+        axios.post("http://localhost:3001/auth/logout", {}, {
             withCredentials: true
         })
             .then((response) => {
