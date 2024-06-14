@@ -86,20 +86,19 @@ export default function Header() {
                                     : <><Link to="login">Вхід</Link> <span>/</span> <Link to="register">Реєстрація</Link></>
                             }
                         </div>
-                        <div className="subMenu">
-                            <div>
-                                <div>
-                                    <img src="/image/ico/header/subMenu/key.svg" alt="" />
+                        {
+                            userName
+                                ? <div className="subMenu">
+                                    <div>
+                                        <div>
+                                            <img src="/image/ico/header/subMenu/key.svg" alt="" />
+                                        </div>
+                                        <Link to="user">Особистий кабінет</Link>
+                                    </div>
                                 </div>
-                                <Link to="user">Особистий кабінет</Link>
-                            </div>
-                            <div>
-                                <div>
-                                    <img src="/image/ico/header/subMenu/hammer.svg" alt="" />
-                                </div>
-                                <Link to="auction">Контракти</Link>
-                            </div>
-                        </div>
+                                : null
+                        }
+
                     </div>
                 </div>
             </div>
